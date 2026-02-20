@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light Mode */
+  --background: #ffffff;
+  --surface: #f9f9f9;
+  --surface-light: #f5f5f5;
+  --border: #e5e5e5;
+  --text-primary: #0a0a0a;
+  --text-secondary: #525252;
+}
+
+.dark {
+  /* Dark Mode (Default/Primary) */
+  --background: #000000;
+  --surface: #0d0d0d;
+  --surface-light: #1a1a1a;
+  --border: #1f1f1f;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text-primary font-sans antialiased transition-colors duration-300;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-text-primary;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-sm bg-brand px-6 py-3 text-sm font-semibold text-black shadow-sm hover:bg-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand transition-all;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-sm border border-border bg-surface px-6 py-3 text-sm font-semibold text-text-primary hover:bg-surface-light hover:border-text-secondary/30 transition-all;
+  }
+  .card {
+    @apply bg-surface border border-border rounded-lg p-6 hover:border-brand/30 transition-colors;
+  }
+  .nav-link {
+    @apply text-sm font-medium text-text-secondary hover:text-brand transition-colors;
+  }
+}
+
+/* Custom Scrollbar for dark theme feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-border rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-text-secondary;
+}
