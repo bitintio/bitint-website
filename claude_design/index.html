@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bitint — Blockchain Intelligence Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"/>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+// Tweak defaults — persisted
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "light",
+  "accentHue": 260,
+  "accentIntensity": "balanced",
+  "showTweaksPanel": true
+}/*EDITMODE-END*/;
+window.__TWEAKS__ = TWEAK_DEFAULTS;
+</script>
+
+<script type="text/babel" src="shell.jsx"></script>
+<script type="text/babel" src="product-mockups.jsx"></script>
+<script type="text/babel" src="page-home.jsx"></script>
+<script type="text/babel" src="pages.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+function useHashRoute() {
+  const [route, setRoute] = useState(() => (window.location.hash || '#/').slice(1) || '/');
+  useEffect(() => {
+    const fn = () => {
+      setRoute((window.location.hash || '#/').slice(1) || '/');
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener('hashchange', fn);
+    return () => window.removeEventListener('hashchange', fn);
+  }, []);
+  const nav = (path) => { window.location.hash = '#' + path; };
+  return [route, nav];
+}
+
+function applyAccent(hue, intensity) {
+  const root = document.documentElement;
+  // intensity controls chroma/saturation ish — we swap gradients
+  // Keep a fixed violet→cyan palette but allow hue to shift
+  root.style.setProperty('--violet-500', `oklch(0.58 0.22 ${hue})`);
+  root.style.setProperty('--violet-600', `oklch(0.50 0.22 ${hue})`);
+  root.style.setProperty('--violet-700', `oklch(0.42 0.20 ${hue})`);
+  root.style.setProperty('--cyan-500', `oklch(0.72 0.15 ${(hue + 70) % 360})`);
+  const g1 = intensity === 'bold'    ? 'linear-gradient(135deg, var(--violet-500), var(--cyan-500))'
+           : intensity === 'subtle'  ? 'linear-gradient(135deg, var(--violet-600), var(--violet-500))'
+           :                           'linear-gradient(135deg, var(--violet-500) 0%, var(--cyan-500) 100%)';
+  root.style.setProperty('--gradient-brand', g1);
+}
+
+function TweaksPanel({ theme, onTheme, hue, onHue, intensity, onIntensity }) {
+  const [open, setOpen] = useState(false);
+  const [available, setAvailable] = useState(false);
+
+  useEffect(() => {
+    const listener = (e) => {
+      if (e?.data?.type === '__activate_edit_mode') setAvailable(v => v || true) || setOpen(true);
+      if (e?.data?.type === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', listener);
+    try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch(_) {}
+    return () => window.removeEventListener('message', listener);
+  }, []);
+
+  const persist = (patch) => {
+    try { window.parent.postMessage({ type: '__edit_mode_set_keys', edits: patch }, '*'); } catch(_) {}
+  };
+
+  if (!open) return null;
+  return (
+    <div style={{
+      position:'fixed', right:20, bottom:20, zIndex:1000,
+      width:300, padding:18,
+      background:'var(--surface)', border:'1px solid var(--border)',
+      borderRadius:16, boxShadow:'var(--shadow-lg)',
+      fontFamily:'var(--font-sans)',
+    }}>
+      <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:14}}>
+        <div style={{fontWeight:600, fontSize:14}}>Tweaks</div>
+        <button onClick={()=>setOpen(false)} style={{color:'var(--text-muted)', padding:4}}><Icon name="x" size={14}/></button>
+      </div>
+
+      <div style={{fontSize:11, color:'var(--text-subtle)', fontFamily:'var(--font-mono)', letterSpacing:'0.06em', textTransform:'uppercase', marginBottom:8}}>Theme</div>
+      <div style={{display:'flex', gap:6, marginBottom:16}}>
+        {['light','dark'].map(t => (
+          <button key={t} onClick={()=>{ onTheme(t); persist({theme:t}); }}
+            className="btn btn-sm"
+            style={{
+              flex:1, justifyContent:'center',
+              background: theme===t ? 'var(--gradient-brand)' : 'var(--surface-2)',
+              color: theme===t ? '#fff' : 'var(--text)',
+            }}>
+            <Icon name={t==='light'?'sun':'moon'} size={13}/> {t}
+          </button>
+        ))}
+      </div>
+
+      <div style={{fontSize:11, color:'var(--text-subtle)', fontFamily:'var(--font-mono)', letterSpacing:'0.06em', textTransform:'uppercase', marginBottom:8}}>Accent hue</div>
+      <input type="range" min="200" max="320" value={hue} onChange={(e)=>{ const v=+e.target.value; onHue(v); persist({accentHue:v}); }}
+             style={{width:'100%', accentColor:'var(--violet-500)'}}/>
+      <div style={{display:'flex', justifyContent:'space-between', fontSize:10.5, color:'var(--text-subtle)', fontFamily:'var(--font-mono)'}}>
+        <span>cyan-ish</span><span>{hue}°</span><span>violet-pink</span>
+      </div>
+
+      <div style={{fontSize:11, color:'var(--text-subtle)', fontFamily:'var(--font-mono)', letterSpacing:'0.06em', textTransform:'uppercase', marginTop:14, marginBottom:8}}>Intensity</div>
+      <div style={{display:'flex', gap:6}}>
+        {['subtle','balanced','bold'].map(i => (
+          <button key={i} onClick={()=>{ onIntensity(i); persist({accentIntensity:i}); }}
+            className="btn btn-sm"
+            style={{
+              flex:1, justifyContent:'center', textTransform:'capitalize',
+              background: intensity===i ? 'var(--gradient-brand)' : 'var(--surface-2)',
+              color: intensity===i ? '#fff' : 'var(--text)',
+              fontSize:11.5,
+            }}>
+            {i}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [route, nav] = useHashRoute();
+  const [theme, setTheme] = useState(window.__TWEAKS__.theme || 'light');
+  const [hue, setHue] = useState(window.__TWEAKS__.accentHue || 260);
+  const [intensity, setIntensity] = useState(window.__TWEAKS__.accentIntensity || 'balanced');
+
+  useEffect(() => { document.documentElement.setAttribute('data-theme', theme); }, [theme]);
+  useEffect(() => { applyAccent(hue, intensity); }, [hue, intensity]);
+
+  const page = (() => {
+    if (route.startsWith('/platform')) return <PlatformPage onNav={nav}/>;
+    if (route.startsWith('/solutions/investigations')) return <InvestigationsDetailPage onNav={nav}/>;
+    if (route.startsWith('/solutions')) return <SolutionsPage onNav={nav}/>;
+    if (route.startsWith('/contact')) return <ContactPage onNav={nav}/>;
+    if (route.startsWith('/login')) return <LoginPage onNav={nav}/>;
+    return <HomePage onNav={nav}/>;
+  })();
+
+  const hideFooter = route.startsWith('/login');
+
+  return (
+    <div data-screen-label={`${route}`}>
+      <Nav current={route} onNav={nav} theme={theme}
+           onThemeToggle={()=>setTheme(theme==='light'?'dark':'light')}/>
+      <main>{page}</main>
+      {!hideFooter && <Footer onNav={nav}/>}
+      <TweaksPanel
+        theme={theme} onTheme={setTheme}
+        hue={hue} onHue={setHue}
+        intensity={intensity} onIntensity={setIntensity}/>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

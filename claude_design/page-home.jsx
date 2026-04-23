@@ -1,166 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Icon } from '../components/ui/Icons';
-import {
-  AppChrome,
-  InvestigationGraph,
-  DashboardMini,
-  MonitoringMini,
-  WalletScreeningMini,
-  CaseManagerMini,
-} from '../components/ProductMockups';
+/* global React, Icon, BitintLogo, AppChrome, InvestigationGraph, DashboardMini, MonitoringMini, WalletScreeningMini, CaseManagerMini */
+const { useState: useSp, useEffect: useEp, useRef: useRp } = React;
 
-const CTASection: React.FC<{ onNav: (path: string) => void }> = ({ onNav }) => (
-  <section className="section">
-    <div className="container">
-      <div style={{
-        position:'relative', overflow:'hidden',
-        borderRadius:24, padding:'64px 48px',
-        background:'linear-gradient(135deg, #1a1466 0%, #3a2cb8 45%, #1f8cec 100%)',
-        color:'#fff',
-        textAlign:'center',
-      }}>
-        <div aria-hidden style={{
-          position:'absolute', inset:0,
-          backgroundImage:'radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px)',
-          backgroundSize:'22px 22px', opacity:0.6,
-        }}/>
-        <div style={{position:'relative'}}>
-          <h2 className="display-2" style={{color:'#fff', maxWidth:720, margin:'0 auto'}}>
-            Ready to see the graph for yourself?
-          </h2>
-          <p style={{fontSize:17, marginTop:18, color:'rgba(255,255,255,0.82)', maxWidth:560, margin:'18px auto 0'}}>
-            Guided demo with a Bitint analyst using your own addresses, no commitment. 30 minutes.
-          </p>
-          <div style={{display:'inline-flex', gap:12, marginTop:28, flexWrap:'wrap', justifyContent:'center'}}>
-            <button className="btn btn-lg" style={{background:'#fff', color:'var(--violet-ink)'}} onClick={()=>onNav('/contact')}>
-              Book a demo <Icon name="arrow-right" size={15} stroke={2}/>
-            </button>
-            <button className="btn btn-lg btn-ghost" style={{borderColor:'rgba(255,255,255,0.3)', color:'#fff'}} onClick={()=>onNav('/platform')}>
-              Explore the platform
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const DarkGraphSection: React.FC<{ onNav: (path: string) => void }> = ({ onNav }) => (
-  <section style={{
-    background:'var(--violet-ink)',
-    color:'#f5f4ff',
-    padding:'112px 0',
-    position:'relative', overflow:'hidden',
-  }}>
-    <div aria-hidden style={{
-      position:'absolute', inset:0,
-      backgroundImage:'radial-gradient(1000px 500px at 20% 10%, rgba(91,76,255,0.35), transparent 60%), radial-gradient(800px 500px at 90% 80%, rgba(62,166,255,0.25), transparent 60%)',
-    }}/>
-    <div aria-hidden style={{
-      position:'absolute', inset:0,
-      backgroundImage:'radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)',
-      backgroundSize:'24px 24px',
-      maskImage:'radial-gradient(circle at center, #000 0%, transparent 70%)',
-    }}/>
-    <div className="container-wide" style={{position:'relative'}}>
-      <div style={{display:'grid', gridTemplateColumns:'1fr 1.1fr', gap:60, alignItems:'center'}}>
-        <div>
-          <div className="eyebrow" style={{background:'rgba(255,255,255,0.08)', color:'#c5bcff', borderColor:'rgba(197,188,255,0.25)'}}>
-            Investigation
-          </div>
-          <h2 className="display-2" style={{marginTop:16, color:'#fff'}}>
-            From <span style={{color:'#9dd5ff'}}>lead</span><br/>
-            to <span className="text-gradient">court-ready report.</span>
-          </h2>
-          <p style={{marginTop:18, fontSize:17, color:'rgba(245,244,255,0.7)', maxWidth:520, lineHeight:1.55}}>
-            Start from an address, a hash, or a tip. Bitint pulls in every hop, every counterparty, every relevant attribution — and keeps a signed trail of what you saw, when, and why.
-          </p>
-          <div style={{display:'grid', gap:14, marginTop:28}}>
-            {[
-              ['Graph-first', 'Clustering, heuristic grouping, path-finding — visual by default.'],
-              ['Evidence ledger', 'Pin observations. Attach screenshots, notes, and derivations.'],
-              ['One-click report', 'Export PDF, SAR packets, or machine-readable JSON.'],
-            ].map(([t,d]) => (
-              <div key={t} style={{display:'flex', gap:14}}>
-                <div style={{
-                  width:28, height:28, borderRadius:8,
-                  background:'rgba(91,76,255,0.25)', color:'#c5bcff',
-                  display:'grid', placeItems:'center', flexShrink:0,
-                }}><Icon name="check" size={15} stroke={2.4}/></div>
-                <div>
-                  <div style={{fontWeight:600, fontSize:15}}>{t}</div>
-                  <div style={{color:'rgba(245,244,255,0.6)', fontSize:13.5, marginTop:2}}>{d}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <button className="btn btn-primary btn-lg" style={{marginTop:30}} onClick={()=>onNav('/solutions/investigations')}>
-            Tour investigations <Icon name="arrow-right" size={15} stroke={2}/>
-          </button>
-        </div>
-        <div style={{
-          borderRadius:20,
-          border:'1px solid rgba(255,255,255,0.08)',
-          overflow:'hidden',
-          boxShadow:'0 40px 120px -20px rgba(0,0,0,0.6)',
-          background:'#07061a',
-        }}>
-          <div style={{height:520}}>
-            <InvestigationGraph/>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const TabbedProductPreview: React.FC<{ onNav: (path: string) => void }> = ({ onNav }) => {
-  const tabs = [
-    { key:'graph',   label:'Investigation', icon:'graph',    render:()=><InvestigationGraph animated={true} /> },
-    { key:'monitor', label:'Monitoring',    icon:'activity', render:()=><MonitoringMini/> },
-    { key:'screen',  label:'Screening',     icon:'shield',   render:()=><WalletScreeningMini/> },
-    { key:'dash',    label:'Dashboard',     icon:'eye',      render:()=><DashboardMini/> },
-    { key:'cases',   label:'Cases',         icon:'folder',   render:()=><CaseManagerMini/> },
-  ];
-  const [t, setT] = useState('monitor');
-  return (
-    <section className="section">
-      <div className="container-wide">
-        <div style={{textAlign:'center', maxWidth:680, margin:'0 auto 40px'}}>
-          <div className="eyebrow" style={{margin:'0 auto'}}>Product tour</div>
-          <h2 className="display-2" style={{marginTop:16}}>Explore the product, <span className="text-gradient">module by module.</span></h2>
-        </div>
-        <div style={{display:'flex', justifyContent:'center', gap:6, marginBottom:24, flexWrap:'wrap'}}>
-          {tabs.map(tab => (
-            <button key={tab.key} onClick={()=>setT(tab.key)}
-              className="btn"
-              style={{
-                padding:'10px 16px', fontSize:13.5,
-                background: t===tab.key ? 'var(--gradient-brand)' : 'var(--surface)',
-                color: t===tab.key ? '#fff' : 'var(--text-muted)',
-                border:'1px solid ' + (t===tab.key ? 'transparent' : 'var(--border)'),
-                boxShadow: t===tab.key ? '0 6px 24px -8px rgba(91,76,255,0.55)' : 'none',
-              }}>
-              <Icon name={tab.icon} size={15} stroke={2}/> {tab.label}
-            </button>
-          ))}
-        </div>
-        <AppChrome title={`app.bitint.io/${t}`} height={600}>
-          {tabs.find(x=>x.key===t)?.render()}
-        </AppChrome>
-      </div>
-    </section>
-  );
-}
-
-export const Home: React.FC = () => {
-  const navigate = useNavigate();
-  const onNav = (path: string) => navigate(path);
-
+// ------ HOMEPAGE ------
+function HomePage({ onNav }) {
   return (
     <>
+      {/* HERO */}
       <section className="hero-bg" style={{paddingTop:72, paddingBottom:60, position:'relative', overflow:'hidden'}}>
+        {/* decorative orb */}
         <div aria-hidden style={{
           position:'absolute', top:-120, right:-120, width:520, height:520, borderRadius:'50%',
           background:'radial-gradient(circle, rgba(91,76,255,0.25), transparent 60%)',
@@ -173,7 +20,7 @@ export const Home: React.FC = () => {
         }}/>
 
         <div className="container-wide" style={{position:'relative'}}>
-          <div style={{display:'grid', gridTemplateColumns:'1.05fr 1fr', gap:60, alignItems:'center'}} className="max-lg:grid-cols-1">
+          <div style={{display:'grid', gridTemplateColumns:'1.05fr 1fr', gap:60, alignItems:'center'}}>
             <div className="fadeup">
               <div className="eyebrow"><span style={{width:6, height:6, borderRadius:'50%', background:'var(--violet-500)'}}/> v3.2 · Attribution 3.0 shipped</div>
               <h1 className="display-1" style={{marginTop:20}}>
@@ -210,7 +57,7 @@ export const Home: React.FC = () => {
                 position:'absolute', bottom:-24, left:-28,
                 background:'var(--surface)', border:'1px solid var(--border)',
                 borderRadius:14, padding:'12px 14px', display:'flex', gap:12,
-                boxShadow:'var(--shadow-lg)', alignItems:'center', zIndex: 10
+                boxShadow:'var(--shadow-lg)', alignItems:'center',
               }}>
                 <div style={{
                   width:36, height:36, borderRadius:10,
@@ -226,7 +73,7 @@ export const Home: React.FC = () => {
                 position:'absolute', top:-20, right:-20,
                 background:'var(--surface)', border:'1px solid var(--border)',
                 borderRadius:14, padding:'10px 14px', display:'flex', gap:10,
-                boxShadow:'var(--shadow-md)', alignItems:'center', fontSize:12, zIndex: 10
+                boxShadow:'var(--shadow-md)', alignItems:'center', fontSize:12,
               }}>
                 <div style={{width:8, height:8, borderRadius:'50%', background:'#10b981', boxShadow:'0 0 0 4px rgba(16,185,129,0.2)'}}/>
                 <span className="mono" style={{color:'var(--text-muted)'}}>screened in 281ms</span>
@@ -236,9 +83,10 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* METRICS STRIP */}
       <section style={{padding:'40px 0', borderTop:'1px solid var(--border)', borderBottom:'1px solid var(--border)', background:'var(--bg-soft)'}}>
         <div className="container-wide">
-          <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:40}} className="max-md:grid-cols-2">
+          <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:40}}>
             {[
               {k:'2.8B+',  v:'addresses under coverage'},
               {k:'14',     v:'chains indexed natively'},
@@ -256,8 +104,10 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* TABBED PRODUCT PREVIEW */}
       <TabbedProductPreview onNav={onNav}/>
 
+      {/* 3-UP FEATURES */}
       <section className="section">
         <div className="container-wide">
           <div style={{maxWidth:720, marginBottom:56}}>
@@ -269,7 +119,7 @@ export const Home: React.FC = () => {
               From first lead to final report — Bitint fits into how your analysts already work, and earns its keep in every step.
             </p>
           </div>
-          <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:16}} className="max-lg:grid-cols-2 max-sm:grid-cols-1">
+          <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:16}}>
             {[
               {icon:'graph', title:'Investigations', body:'Graph-first case work with automatic clustering, evidence pins, and side-by-side compare.', tag:'Solution'},
               {icon:'shield', title:'Wallet screening', body:'Sub-300ms API calls check addresses against sanctions, criminal DBs, and 40+ heuristics.', tag:'API'},
@@ -278,7 +128,7 @@ export const Home: React.FC = () => {
               {icon:'bell', title:'Configurable alerts', body:'Build the alerting that matches your SOPs — not the other way around.', tag:'Workflow'},
               {icon:'clipboard', title:'Auditability', body:'Every decision, view, and export is logged. Defensible in court, boring for auditors.', tag:'Compliance'},
             ].map((f,i) => (
-              <div key={f.title} className="card flex flex-col items-start" style={{padding:24}}>
+              <div key={f.title} className="card" style={{padding:24}}>
                 <div style={{
                   width:44, height:44, borderRadius:12,
                   background:'var(--gradient-brand-soft)',
@@ -292,19 +142,21 @@ export const Home: React.FC = () => {
                   <h3 style={{fontSize:19}}>{f.title}</h3>
                   <span className="tag" style={{fontSize:10, padding:'2px 6px'}}>{f.tag}</span>
                 </div>
-                <p className="muted" style={{marginTop:8, fontSize:14, lineHeight:1.55, flex: 1}}>{f.body}</p>
-                <button onClick={() => onNav('/solutions')}
+                <p className="muted" style={{marginTop:8, fontSize:14, lineHeight:1.55}}>{f.body}</p>
+                <a href="#" onClick={(e)=>{e.preventDefault(); onNav('/solutions');}}
                    style={{display:'inline-flex', alignItems:'center', gap:6, marginTop:18, fontSize:13, fontWeight:600, color:'var(--violet-600)'}}>
                   Learn more <Icon name="arrow-right" size={14} stroke={2}/>
-                </button>
+                </a>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* WIDE DARK SECTION – investigation deep dive */}
       <DarkGraphSection onNav={onNav}/>
 
+      {/* TESTIMONIAL / QUOTE */}
       <section className="section-sm">
         <div className="container" style={{maxWidth:960}}>
           <div className="card" style={{padding:40, background:'var(--gradient-brand-soft)', borderColor:'rgba(91,76,255,0.18)'}}>
@@ -325,9 +177,10 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* COVERAGE / CHAINS */}
       <section className="section-sm">
         <div className="container-wide">
-          <div style={{display:'grid', gridTemplateColumns:'1fr 1.4fr', gap:60, alignItems:'center'}} className="max-lg:grid-cols-1">
+          <div style={{display:'grid', gridTemplateColumns:'1fr 1.4fr', gap:60, alignItems:'center'}}>
             <div>
               <div className="eyebrow">Coverage</div>
               <h2 className="display-3" style={{marginTop:14}}>14 chains. <span className="text-gradient">Native depth.</span></h2>
@@ -336,7 +189,7 @@ export const Home: React.FC = () => {
               </p>
               <button className="btn btn-ghost" style={{marginTop:18}} onClick={()=>onNav('/platform')}>Coverage details <Icon name="arrow-right" size={14} stroke={2}/></button>
             </div>
-            <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:10}} className="max-sm:grid-cols-3">
+            <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:10}}>
               {['Bitcoin','Ethereum','Tron','BSC','Polygon','Arbitrum','Optimism','Solana','Avalanche','Litecoin','Base','Cardano','TON','Sui'].map(c => (
                 <div key={c} className="card" style={{padding:'14px 12px', textAlign:'center', fontSize:13, fontWeight:500}}>
                   <div style={{width:28, height:28, borderRadius:8, background:'var(--gradient-brand-soft)', margin:'0 auto 8px', border:'1px solid rgba(91,76,255,0.2)'}}/>
@@ -351,6 +204,157 @@ export const Home: React.FC = () => {
       <CTASection onNav={onNav}/>
     </>
   );
-};
+}
 
-export { CTASection };
+// ------ TABBED PRODUCT PREVIEW ------
+function TabbedProductPreview({ onNav }) {
+  const tabs = [
+    { key:'graph',   label:'Investigation', icon:'graph',    render:()=><InvestigationGraph/> },
+    { key:'monitor', label:'Monitoring',    icon:'activity', render:()=><MonitoringMini/> },
+    { key:'screen',  label:'Screening',     icon:'shield',   render:()=><WalletScreeningMini/> },
+    { key:'dash',    label:'Dashboard',     icon:'eye',      render:()=><DashboardMini/> },
+    { key:'cases',   label:'Cases',         icon:'folder',   render:()=><CaseManagerMini/> },
+  ];
+  const [t, setT] = useSp('monitor');
+  return (
+    <section className="section">
+      <div className="container-wide">
+        <div style={{textAlign:'center', maxWidth:680, margin:'0 auto 40px'}}>
+          <div className="eyebrow" style={{margin:'0 auto'}}>Product tour</div>
+          <h2 className="display-2" style={{marginTop:16}}>Explore the product, <span className="text-gradient">module by module.</span></h2>
+        </div>
+        <div style={{display:'flex', justifyContent:'center', gap:6, marginBottom:24, flexWrap:'wrap'}}>
+          {tabs.map(tab => (
+            <button key={tab.key} onClick={()=>setT(tab.key)}
+              className="btn"
+              style={{
+                padding:'10px 16px', fontSize:13.5,
+                background: t===tab.key ? 'var(--gradient-brand)' : 'var(--surface)',
+                color: t===tab.key ? '#fff' : 'var(--text-muted)',
+                border:'1px solid ' + (t===tab.key ? 'transparent' : 'var(--border)'),
+                boxShadow: t===tab.key ? '0 6px 24px -8px rgba(91,76,255,0.55)' : 'none',
+              }}>
+              <Icon name={tab.icon} size={15} stroke={2}/> {tab.label}
+            </button>
+          ))}
+        </div>
+        <AppChrome title={`app.bitint.io/${t}`} height={600}>
+          {tabs.find(x=>x.key===t).render()}
+        </AppChrome>
+      </div>
+    </section>
+  );
+}
+
+// ------ DARK DEEP-DIVE ------
+function DarkGraphSection({ onNav }) {
+  return (
+    <section style={{
+      background:'var(--violet-ink)',
+      color:'#f5f4ff',
+      padding:'112px 0',
+      position:'relative', overflow:'hidden',
+    }}>
+      <div aria-hidden style={{
+        position:'absolute', inset:0,
+        backgroundImage:'radial-gradient(1000px 500px at 20% 10%, rgba(91,76,255,0.35), transparent 60%), radial-gradient(800px 500px at 90% 80%, rgba(62,166,255,0.25), transparent 60%)',
+      }}/>
+      <div aria-hidden style={{
+        position:'absolute', inset:0,
+        backgroundImage:'radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)',
+        backgroundSize:'24px 24px',
+        maskImage:'radial-gradient(circle at center, #000 0%, transparent 70%)',
+      }}/>
+      <div className="container-wide" style={{position:'relative'}}>
+        <div style={{display:'grid', gridTemplateColumns:'1fr 1.1fr', gap:60, alignItems:'center'}}>
+          <div>
+            <div className="eyebrow" style={{background:'rgba(255,255,255,0.08)', color:'#c5bcff', borderColor:'rgba(197,188,255,0.25)'}}>
+              Investigation
+            </div>
+            <h2 className="display-2" style={{marginTop:16, color:'#fff'}}>
+              From <span style={{color:'#9dd5ff'}}>lead</span><br/>
+              to <span className="text-gradient">court-ready report.</span>
+            </h2>
+            <p style={{marginTop:18, fontSize:17, color:'rgba(245,244,255,0.7)', maxWidth:520, lineHeight:1.55}}>
+              Start from an address, a hash, or a tip. Bitint pulls in every hop, every counterparty, every relevant attribution — and keeps a signed trail of what you saw, when, and why.
+            </p>
+            <div style={{display:'grid', gap:14, marginTop:28}}>
+              {[
+                ['Graph-first', 'Clustering, heuristic grouping, path-finding — visual by default.'],
+                ['Evidence ledger', 'Pin observations. Attach screenshots, notes, and derivations.'],
+                ['One-click report', 'Export PDF, SAR packets, or machine-readable JSON.'],
+              ].map(([t,d]) => (
+                <div key={t} style={{display:'flex', gap:14}}>
+                  <div style={{
+                    width:28, height:28, borderRadius:8,
+                    background:'rgba(91,76,255,0.25)', color:'#c5bcff',
+                    display:'grid', placeItems:'center', flexShrink:0,
+                  }}><Icon name="check" size={15} stroke={2.4}/></div>
+                  <div>
+                    <div style={{fontWeight:600, fontSize:15}}>{t}</div>
+                    <div style={{color:'rgba(245,244,255,0.6)', fontSize:13.5, marginTop:2}}>{d}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button className="btn btn-primary btn-lg" style={{marginTop:30}} onClick={()=>onNav('/solutions/investigations')}>
+              Tour investigations <Icon name="arrow-right" size={15} stroke={2}/>
+            </button>
+          </div>
+          <div style={{
+            borderRadius:20,
+            border:'1px solid rgba(255,255,255,0.08)',
+            overflow:'hidden',
+            boxShadow:'0 40px 120px -20px rgba(0,0,0,0.6)',
+            background:'#07061a',
+          }}>
+            <div style={{height:520}}>
+              <InvestigationGraph/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ------ CTA ------
+function CTASection({ onNav }) {
+  return (
+    <section className="section">
+      <div className="container">
+        <div style={{
+          position:'relative', overflow:'hidden',
+          borderRadius:24, padding:'64px 48px',
+          background:'linear-gradient(135deg, #1a1466 0%, #3a2cb8 45%, #1f8cec 100%)',
+          color:'#fff',
+          textAlign:'center',
+        }}>
+          <div aria-hidden style={{
+            position:'absolute', inset:0,
+            backgroundImage:'radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px)',
+            backgroundSize:'22px 22px', opacity:0.6,
+          }}/>
+          <div style={{position:'relative'}}>
+            <h2 className="display-2" style={{color:'#fff', maxWidth:720, margin:'0 auto'}}>
+              Ready to see the graph for yourself?
+            </h2>
+            <p style={{fontSize:17, marginTop:18, color:'rgba(255,255,255,0.82)', maxWidth:560, margin:'18px auto 0'}}>
+              Guided demo with a Bitint analyst using your own addresses, no commitment. 30 minutes.
+            </p>
+            <div style={{display:'inline-flex', gap:12, marginTop:28, flexWrap:'wrap', justifyContent:'center'}}>
+              <button className="btn btn-lg" style={{background:'#fff', color:'var(--violet-ink)'}} onClick={()=>onNav('/contact')}>
+                Book a demo <Icon name="arrow-right" size={15} stroke={2}/>
+              </button>
+              <button className="btn btn-lg btn-ghost" style={{borderColor:'rgba(255,255,255,0.3)', color:'#fff'}} onClick={()=>onNav('/platform')}>
+                Explore the platform
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+Object.assign(window, { HomePage });

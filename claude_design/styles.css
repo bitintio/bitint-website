@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Bitint redesign — purple/cyan theme */
 :root {
   --bg: #ffffff;
@@ -289,4 +285,3 @@ html[data-theme="dark"] .eyebrow { color: var(--violet-200); }
   .section { padding: 64px 0; }
   .section-lg { padding: 96px 0; }
 }
-

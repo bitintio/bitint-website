@@ -2,6 +2,11 @@ import React from 'react';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
 import { CheckCircle } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import rehypeSlug from 'rehype-slug';
+import { Helmet } from 'react-helmet-async';
+import termsContent from '../data/terms.md?raw';
+import privacyContent from '../data/privacy.md?raw';
 
 export const Thanks = () => (
   <div className="min-h-[70vh] flex items-center justify-center bg-background">
@@ -32,28 +37,49 @@ export const NotFound = () => (
 );
 
 export const Privacy = () => (
-  <div className="container-custom py-24 max-w-3xl">
-    <h1 className="text-4xl font-display font-bold mb-8">Privacy Policy</h1>
-    <div className="prose dark:prose-invert prose-yellow max-w-none">
-      <p>Last Updated: October 2023</p>
-      <p>This is a placeholder privacy policy for the Bitint demo application.</p>
-      <h3>1. Data Collection</h3>
-      <p>We collect information necessary to provide blockchain intelligence services...</p>
-      <h3>2. Data Usage</h3>
-      <p>Your data is used solely for the purpose of...</p>
-      {/* More legal lorem ipsum would go here */}
+  <div className="container-custom py-24">
+    <Helmet>
+      <title>Privacy Policy | Bitint</title>
+      <meta name="description" content="Bitint Privacy Policy and data handling practices." />
+    </Helmet>
+    <div className="max-w-3xl mx-auto">
+      <div className="prose prose-lg dark:prose-invert max-w-none 
+          prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight
+          prose-h1:text-4xl prose-h1:mb-8
+          prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:font-semibold
+          prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4
+          prose-p:text-text-secondary prose-p:leading-relaxed prose-p:mb-6
+          prose-a:text-brand prose-a:no-underline hover:prose-a:underline
+          prose-li:text-text-secondary prose-li:my-1
+          prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
+          prose-strong:text-text-primary marker:text-text-secondary
+          selection:bg-brand/30">
+        <ReactMarkdown rehypePlugins={[rehypeSlug]}>{privacyContent}</ReactMarkdown>
+      </div>
     </div>
   </div>
 );
 
 export const Terms = () => (
-  <div className="container-custom py-24 max-w-3xl">
-    <h1 className="text-4xl font-display font-bold mb-8">Terms & Conditions</h1>
-    <div className="prose dark:prose-invert prose-yellow max-w-none">
-      <p>Last Updated: October 2023</p>
-      <p>These terms govern your use of the Bitint platform.</p>
-      <h3>1. Acceptable Use</h3>
-      <p>You agree not to use the platform for any illegal activities...</p>
+  <div className="container-custom py-24">
+    <Helmet>
+      <title>Terms & Conditions | Bitint</title>
+      <meta name="description" content="Bitint Terms and Conditions of service." />
+    </Helmet>
+    <div className="max-w-3xl mx-auto">
+      <div className="prose prose-lg dark:prose-invert max-w-none 
+          prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight
+          prose-h1:text-4xl prose-h1:mb-8
+          prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:font-semibold
+          prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4
+          prose-p:text-text-secondary prose-p:leading-relaxed prose-p:mb-6
+          prose-a:text-brand prose-a:no-underline hover:prose-a:underline
+          prose-li:text-text-secondary prose-li:my-1
+          prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
+          prose-strong:text-text-primary marker:text-text-secondary
+          selection:bg-brand/30">
+        <ReactMarkdown rehypePlugins={[rehypeSlug]}>{termsContent}</ReactMarkdown>
+      </div>
     </div>
   </div>
 );

@@ -1,120 +1,87 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import { Button } from '../components/ui/Button';
-import { Search, Activity, ShieldAlert, Users, FileText, Settings, ArrowRight, Check } from 'lucide-react';
-import { NotFound } from './GenericPages';
-
-const solutionsData = [
-  { id: 'investigations', title: 'Investigations', icon: Search, desc: 'Trace funds across chains and mixers.' },
-  { id: 'monitoring', title: 'Transaction Monitoring', icon: Activity, desc: 'Real-time AML risk detection.' },
-  { id: 'screening', title: 'Wallet Screening', icon: ShieldAlert, desc: 'Instant KYT checks before deposit/withdrawal.' },
-  { id: 'entity-intel', title: 'Entity Intelligence', icon: Users, desc: 'Know who owns the wallet.' },
-  { id: 'case-management', title: 'Case Management', icon: FileText, desc: 'Collaborate on investigations.' },
-  { id: 'alerts', title: 'Configurable Alerts', icon: Settings, desc: 'Custom rules for your risk profile.' },
-];
-
-const SolutionsOverview = () => (
-  <div className="bg-background min-h-screen">
-    <div className="py-24 bg-surface border-b border-border">
-      <div className="container-custom text-center">
-         <div className="inline-block px-3 py-1 mb-6 text-xs font-mono font-medium text-brand border border-brand/20 rounded-full bg-brand/5">
-             OPERATIONAL SUITE
-         </div>
-         <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">Risk detection and investigations <br/> built into one.</h1>
-         <p className="text-xl text-text-secondary max-w-2xl mx-auto mb-8">
-           Don't switch tools. Bitint connects the dots between screening, monitoring, and deep-dive forensics.
-         </p>
-         <Button href="/request-demo" size="lg">Get a Demo</Button>
-      </div>
-    </div>
-
-    <div className="container-custom py-24">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {solutionsData.map(s => (
-                <Link key={s.id} to={`/solutions/${s.id}`} className="group p-8 border border-border bg-surface rounded-xl hover:border-brand/50 transition-all">
-                    <s.icon className="text-brand mb-6" size={32} />
-                    <h3 className="text-2xl font-bold mb-2 group-hover:text-brand transition-colors">{s.title}</h3>
-                    <p className="text-text-secondary mb-4">{s.desc}</p>
-                    <div className="flex items-center text-sm font-bold text-text-primary group-hover:translate-x-1 transition-transform">
-                        Explore <ArrowRight size={16} className="ml-2" />
-                    </div>
-                </Link>
-            ))}
-        </div>
-    </div>
-  </div>
-);
-
-const SolutionDetail = ({ type }: { type: string }) => {
-    const data = solutionsData.find(s => s.id === type);
-    if (!data) return <NotFound />;
-
-    return (
-        <div className="bg-background min-h-screen">
-             <div className="py-24 bg-surface border-b border-border">
-                <div className="container-custom">
-                     <Link to="/solutions" className="text-sm text-text-secondary hover:text-brand mb-6 inline-block">&larr; Back to Solutions</Link>
-                     <h1 className="text-5xl font-display font-bold mb-6">{data.title}</h1>
-                     <p className="text-xl text-text-secondary max-w-2xl">{data.desc} Built for scale and precision.</p>
-                </div>
-            </div>
-            
-            <div className="container-custom py-16 grid md:grid-cols-3 gap-12">
-                <div className="md:col-span-2">
-                    <h2 className="text-3xl font-display font-bold mb-8">Core Capabilities</h2>
-                    <ul className="space-y-4">
-                        {[1,2,3,4,5].map(i => (
-                            <li key={i} className="flex items-start gap-3">
-                                <div className="mt-1 w-5 h-5 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center flex-shrink-0">
-                                    <Check size={12} strokeWidth={4} />
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-lg">Capability Feature {i}</h4>
-                                    <p className="text-text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                    
-                    <div className="mt-16">
-                        <h2 className="text-3xl font-display font-bold mb-8">Common Pitfalls We Prevent</h2>
-                        <div className="grid md:grid-cols-2 gap-6">
-                            <div className="p-6 border border-border rounded-lg bg-surface-light">
-                                <h4 className="font-bold text-red-400 mb-2">False Positives</h4>
-                                <p className="text-sm text-text-secondary">Avoid freezing legitimate user funds due to dust attacks or loose heuristics.</p>
-                            </div>
-                            <div className="p-6 border border-border rounded-lg bg-surface-light">
-                                <h4 className="font-bold text-red-400 mb-2">Chain Hopping</h4>
-                                <p className="text-sm text-text-secondary">Don't lose the trail when funds move to a bridge or mixer.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                     <div className="bg-surface border border-border rounded-xl p-6 sticky top-24">
-                         <h3 className="font-bold text-xl mb-4">Ready to deploy?</h3>
-                         <p className="text-text-secondary mb-6 text-sm">Integrate {data.title} into your workflow today.</p>
-                         <Button href="/request-demo" className="w-full mb-4">Request Demo</Button>
-                         <Button href="/company/contact" variant="secondary" className="w-full">Contact Sales</Button>
-                     </div>
-                </div>
-            </div>
-        </div>
-    );
-};
+import { useNavigate } from 'react-router-dom';
+import { Icon } from '../components/ui/Icons';
+import { CTASection } from './Home';
 
 export const Solutions = () => {
+  const navigate = useNavigate();
+  const onNav = (path: string) => navigate(path);
+
+  const solutions = [
+    {key:'investigations', icon:'graph', title:'Investigations', desc:'Graph-first case work with automatic clustering and evidence trails.', stat:'10x faster unwinds'},
+    {key:'screening',     icon:'shield', title:'Wallet screening', desc:'Sub-300ms API calls for sanctions and risk.', stat:'280ms p50'},
+    {key:'monitoring',    icon:'activity', title:'Transaction monitoring', desc:'Streaming alerts with tunable rules.', stat:'24/7 stream'},
+    {key:'entity',        icon:'users', title:'Entity intelligence', desc:'Human-curated attribution you can defend.', stat:'280M+ entities'},
+    {key:'alerts',        icon:'bell', title:'Configurable alerts', desc:'Alerting shaped to your SOPs, not ours.', stat:'40+ rule primitives'},
+    {key:'compliance',    icon:'clipboard', title:'Compliance workflows', desc:'SAR packets, audit trails, and signed exports.', stat:'SOC 2 · ISO 27001'},
+  ];
+  const industries = [
+    {icon:'shield', t:'Government & LE', d:'Investigate sanctions evasion, ransomware, trafficking.'},
+    {icon:'lock', t:'Financial institutions', d:'AML, KYT, and counterparty risk — integrated into your core.'},
+    {icon:'globe', t:'VASPs & exchanges', d:'Onboarding screening and live monitoring at platform scale.'},
+    {icon:'users', t:'Private investigators', d:'Defensible reports, redaction-ready exports, courtroom fit.'},
+  ];
+
   return (
-    <Routes>
-      <Route index element={<SolutionsOverview />} />
-      <Route path="investigations" element={<SolutionDetail type="investigations" />} />
-      <Route path="monitoring" element={<SolutionDetail type="monitoring" />} />
-      <Route path="screening" element={<SolutionDetail type="screening" />} />
-      <Route path="entity-intel" element={<SolutionDetail type="entity-intel" />} />
-      <Route path="case-management" element={<SolutionDetail type="case-management" />} />
-      <Route path="alerts" element={<SolutionDetail type="alerts" />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <section className="hero-bg" style={{padding:'80px 0 60px'}}>
+        <div className="container-wide">
+          <div style={{maxWidth:820}}>
+            <div className="eyebrow">Solutions</div>
+            <h1 className="display-1" style={{marginTop:20}}>Built for the work you already do.</h1>
+            <p className="muted" style={{fontSize:18, marginTop:18, lineHeight:1.55, maxWidth:640}}>
+              Whether you're closing a case, screening a counterparty, or tuning an alert rule — Bitint meets your team where they are.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-sm">
+        <div className="container-wide">
+          <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:16}} className="max-lg:grid-cols-2 max-sm:grid-cols-1">
+            {solutions.map(s => (
+              <div key={s.key} className="card flex flex-col" style={{padding:24, cursor:'pointer', position:'relative', overflow:'hidden'}}
+                   onClick={()=>onNav(s.key==='investigations' ? '/solutions/investigations' : '/solutions')}>
+                <div style={{
+                  width:44, height:44, borderRadius:12,
+                  background:'var(--gradient-brand-soft)', color:'var(--violet-600)',
+                  border:'1px solid rgba(91,76,255,0.18)',
+                  display:'grid', placeItems:'center',
+                }}><Icon name={s.icon} size={22} stroke={2}/></div>
+                <h3 style={{fontSize:20, marginTop:18}}>{s.title}</h3>
+                <p className="muted" style={{fontSize:14, marginTop:8, lineHeight:1.55, flex:1}}>{s.desc}</p>
+                <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginTop:22}}>
+                  <span className="tag mono" style={{fontSize:10}}>{s.stat}</span>
+                  <Icon name="arrow-up-right" size={16} stroke={2}/>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-sm">
+        <div className="container-wide">
+          <div style={{maxWidth:680, marginBottom:32}}>
+            <div className="eyebrow">Industries</div>
+            <h2 className="display-3" style={{marginTop:14}}>Used by the teams that <span className="text-gradient">don't get to be wrong.</span></h2>
+          </div>
+          <div style={{display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:16}} className="max-lg:grid-cols-2 max-sm:grid-cols-1">
+            {industries.map(i => (
+              <div key={i.t} className="card flex flex-col items-start" style={{padding:22}}>
+                <div style={{
+                  width:40, height:40, borderRadius:10, background:'var(--surface-2)',
+                  color:'var(--violet-600)', display:'grid', placeItems:'center', border:'1px solid var(--border)',
+                }}><Icon name={i.icon} size={20} stroke={2}/></div>
+                <div style={{fontWeight:600, fontSize:15, marginTop:14}}>{i.t}</div>
+                <div style={{fontSize:13, color:'var(--text-muted)', marginTop:6, flex:1}}>{i.d}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CTASection onNav={onNav}/>
+    </>
   );
 };
