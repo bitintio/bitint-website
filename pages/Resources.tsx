@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import ReactMarkdown from 'react-markdown';
 import { Icon } from '../components/ui/Icons';
 import { NotFound } from './GenericPages';
 
@@ -16,7 +17,7 @@ const ResourceCard = ({ item }: { item: any }) => {
   const t = typeMap[item.type] || { label: 'Article', icon: 'file' };
 
   return (
-    <Link to={`/resources/${item.type}`} className="card flex flex-col" style={{padding:24, textDecoration:'none', transition:'border-color .15s ease'}}
+    <Link to={item.slug ? `/resources/${item.type}/${item.slug}` : `/resources/${item.type}/${item.id}`} className="card flex flex-col" style={{padding:24, textDecoration:'none', transition:'border-color .15s ease'}}
       onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--violet-500)'}
       onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--border)'}>
       <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:16}}>
@@ -151,13 +152,104 @@ const ResourceCategoryPage = ({ title, desc, type }: { title: string, desc: stri
   );
 };
 
+export const ArticlePage = () => {
+  const { slug } = useParams();
+  const item = RESOURCES_DATA.find(i => i.slug === slug || i.id === slug);
+
+  if (!item) return <NotFound />;
+
+  return (
+    <article style={{paddingBottom: 80}}>
+      <Helmet>
+        <title>{item.title} | Bitint Resources</title>
+        <meta name="description" content={item.desc} />
+      </Helmet>
+      
+      {/* Article Header */}
+      <section className="hero-bg" style={{padding:'80px 0 60px'}}>
+        <div className="container-custom max-w-3xl">
+          <Link to={`/resources/${item.type}`} style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:13, color:'var(--text-muted)', marginBottom:24}}>
+            <Icon name="arrow-right" size={14} style={{transform:'rotate(180deg)'}} /> Back to {item.type.charAt(0).toUpperCase() + item.type.slice(1)}
+          </Link>
+          <div style={{display:'flex', gap:8, marginBottom: 16}}>
+            {item.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
+          </div>
+          <h1 className="display-2 font-bold font-display leading-tight" style={{marginBottom: 20}}>{item.title}</h1>
+          <p className="text-xl text-text-secondary leading-relaxed">{item.desc}</p>
+        </div>
+      </section>
+
+      {/* Article Body */}
+      <section className="container-custom max-w-3xl py-16">
+        <div className="prose prose-lg dark:prose-invert max-w-none 
+          prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight
+          prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6
+          prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4
+          prose-p:text-text-secondary prose-p:leading-relaxed prose-p:mb-6
+          prose-a:text-[var(--violet-500)] prose-a:no-underline hover:prose-a:underline
+          prose-li:text-text-secondary prose-li:my-1
+          prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
+          prose-strong:text-text-primary marker:text-text-secondary">
+          {(item as any).content ? (
+            <ReactMarkdown>{(item as any).content}</ReactMarkdown>
+          ) : (
+            <p>{item.desc}</p>
+          )}
+        </div>
+      </section>
+
+      {/* Separated Value-Aligned Educational CTA */}
+      <section className="container-custom max-w-3xl mt-12">
+        <div style={{
+          padding: 40, 
+          borderRadius: 16, 
+          background: 'var(--surface-2)', 
+          border: '1px solid var(--border)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center'
+        }}>
+          <div style={{
+            width: 48, height: 48, borderRadius: 12, marginBottom: 20,
+            background: 'var(--surface)', color: 'var(--violet-500)',
+            display: 'grid', placeItems: 'center', boxShadow: 'var(--shadow-sm)'
+          }}>
+            <Icon name="search" size={24} />
+          </div>
+          <h3 className="text-2xl font-bold font-display mb-3">Put theory into practice</h3>
+          <p className="text-text-secondary max-w-lg mb-8 leading-relaxed">
+            Reading about tracing typologies is one thing; seeing them unroll across a live graph is another. Explore how Bitint applies these concepts to deliver audit-ready intelligence.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link to="/platform/investigation-graph" className="btn" style={{background: 'var(--surface)', border: '1px solid var(--border)'}}>Explore the Platform</Link>
+            <Link to="/contact" className="btn btn-primary">See a Live Case Study</Link>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+};
+
 export const ResourcesRoutes = () => (
   <Routes>
     <Route index element={<ResourcesOverview />} />
-    <Route path="blog" element={<ResourceCategoryPage title="Blog" desc="Product updates, industry insights, and research from the Bitint team." type="blog" />} />
-    <Route path="fundamentals" element={<ResourceCategoryPage title="Fundamentals" desc="Deep-dive technical articles on blockchain analytics and compliance methodology." type="fundamentals" />} />
-    <Route path="faq" element={<ResourceCategoryPage title="FAQ" desc="Common questions about Bitint's platform, data, and integration." type="faq" />} />
-    <Route path="glossary" element={<ResourceCategoryPage title="Glossary" desc="Definitions and context for blockchain intelligence terminology." type="glossary" />} />
+    <Route path=":type" element={<ResourceCategoryWrapper />} />
+    <Route path=":type/:slug" element={<ArticlePage />} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 );
+
+// Wrapper to handle dynamic category pages
+const ResourceCategoryWrapper = () => {
+  const { type } = useParams();
+  const categoryMeta: Record<string, {title: string, desc: string}> = {
+    blog: { title: "Blog", desc: "Product updates, industry insights, and research from the Bitint team." },
+    fundamentals: { title: "Fundamentals", desc: "Deep-dive technical articles on blockchain analytics and compliance methodology." },
+    faq: { title: "FAQ", desc: "Common questions about Bitint's platform, data, and integration." },
+    glossary: { title: "Glossary", desc: "Definitions and context for blockchain intelligence terminology." }
+  };
+  
+  const meta = categoryMeta[type || ''] || { title: "Resources", desc: "Explore Bitint resources." };
+  return <ResourceCategoryPage title={meta.title} desc={meta.desc} type={type || ''} />;
+};
