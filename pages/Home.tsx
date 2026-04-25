@@ -10,13 +10,13 @@ import {
   CaseManagerMini,
 } from '../components/ProductMockups';
 
-const CTASection: React.FC<{ onNav: (path: string) => void }> = ({ onNav }) => (
+export const CTASection: React.FC<{ onNav: (path: string) => void }> = ({ onNav }) => (
   <section className="section">
     <div className="container">
       <div style={{
         position:'relative', overflow:'hidden',
         borderRadius:24, padding:'64px 48px',
-        background:'linear-gradient(135deg, #1a1466 0%, #3a2cb8 45%, #1f8cec 100%)',
+        background:'linear-gradient(135deg, #2B3990 0%, #A02BE6 45%, #2BFFFF 100%)',
         color:'#fff',
         textAlign:'center',
       }}>
@@ -55,7 +55,7 @@ const DarkGraphSection: React.FC<{ onNav: (path: string) => void }> = ({ onNav }
   }}>
     <div aria-hidden style={{
       position:'absolute', inset:0,
-      backgroundImage:'radial-gradient(1000px 500px at 20% 10%, rgba(91,76,255,0.35), transparent 60%), radial-gradient(800px 500px at 90% 80%, rgba(62,166,255,0.25), transparent 60%)',
+      backgroundImage:'radial-gradient(1000px 500px at 20% 10%, rgba(160,43,230,0.35), transparent 60%), radial-gradient(800px 500px at 90% 80%, rgba(43,255,255,0.25), transparent 60%)',
     }}/>
     <div aria-hidden style={{
       position:'absolute', inset:0,
@@ -85,7 +85,7 @@ const DarkGraphSection: React.FC<{ onNav: (path: string) => void }> = ({ onNav }
               <div key={t} style={{display:'flex', gap:14}}>
                 <div style={{
                   width:28, height:28, borderRadius:8,
-                  background:'rgba(91,76,255,0.25)', color:'#c5bcff',
+                  background:'rgba(160,43,230,0.25)', color:'#c5bcff',
                   display:'grid', placeItems:'center', flexShrink:0,
                 }}><Icon name="check" size={15} stroke={2.4}/></div>
                 <div>
@@ -140,7 +140,7 @@ const TabbedProductPreview: React.FC<{ onNav: (path: string) => void }> = ({ onN
                 background: t===tab.key ? 'var(--gradient-brand)' : 'var(--surface)',
                 color: t===tab.key ? '#fff' : 'var(--text-muted)',
                 border:'1px solid ' + (t===tab.key ? 'transparent' : 'var(--border)'),
-                boxShadow: t===tab.key ? '0 6px 24px -8px rgba(91,76,255,0.55)' : 'none',
+                boxShadow: t===tab.key ? '0 6px 24px -8px rgba(160,43,230,0.55)' : 'none',
               }}>
               <Icon name={tab.icon} size={15} stroke={2}/> {tab.label}
             </button>
@@ -163,7 +163,7 @@ export const Home: React.FC = () => {
       <section className="hero-bg" style={{paddingTop:72, paddingBottom:60, position:'relative', overflow:'hidden'}}>
         <div aria-hidden style={{
           position:'absolute', top:-120, right:-120, width:520, height:520, borderRadius:'50%',
-          background:'radial-gradient(circle, rgba(91,76,255,0.25), transparent 60%)',
+          background:'radial-gradient(circle, rgba(160,43,230,0.25), transparent 60%)',
           filter:'blur(30px)', pointerEvents:'none',
         }}/>
         <div aria-hidden style={{
@@ -282,7 +282,7 @@ export const Home: React.FC = () => {
                 <div style={{
                   width:44, height:44, borderRadius:12,
                   background:'var(--gradient-brand-soft)',
-                  border:'1px solid rgba(91,76,255,0.18)',
+                  border:'1px solid rgba(160,43,230,0.18)',
                   color:'var(--violet-600)',
                   display:'grid', placeItems:'center',
                 }}>
@@ -307,7 +307,7 @@ export const Home: React.FC = () => {
 
       <section className="section-sm">
         <div className="container" style={{maxWidth:960}}>
-          <div className="card" style={{padding:40, background:'var(--gradient-brand-soft)', borderColor:'rgba(91,76,255,0.18)'}}>
+          <div className="card" style={{padding:40, background:'var(--gradient-brand-soft)', borderColor:'rgba(160,43,230,0.18)'}}>
             <div style={{fontFamily:'var(--font-display)', fontSize:26, lineHeight:1.3, letterSpacing:'-0.02em'}}>
               "The graph is the case. Bitint collapsed a three-week Tornado unwind into an afternoon — and the evidence trail held up at the prosecutor's desk without a single follow-up question."
             </div>
@@ -339,7 +339,7 @@ export const Home: React.FC = () => {
             <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:10}} className="max-sm:grid-cols-3">
               {['Bitcoin','Ethereum','Tron','BSC','Polygon','Arbitrum','Optimism','Solana','Avalanche','Litecoin','Base','Cardano','TON','Sui'].map(c => (
                 <div key={c} className="card" style={{padding:'14px 12px', textAlign:'center', fontSize:13, fontWeight:500}}>
-                  <div style={{width:28, height:28, borderRadius:8, background:'var(--gradient-brand-soft)', margin:'0 auto 8px', border:'1px solid rgba(91,76,255,0.2)'}}/>
+                  <div style={{width:28, height:28, borderRadius:8, background:'var(--gradient-brand-soft)', margin:'0 auto 8px', border:'1px solid rgba(160,43,230,0.2)'}}/>
                   {c}
                 </div>
               ))}
@@ -352,5 +352,3 @@ export const Home: React.FC = () => {
     </>
   );
 };
-
-export { CTASection };

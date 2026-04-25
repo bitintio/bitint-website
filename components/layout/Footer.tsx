@@ -5,32 +5,73 @@ import { BitintLogo, Icon } from '../ui/Icons';
 export const Footer: React.FC = () => {
   const cols = [
     { title:'Platform', items:[
-      ['Overview','/platform'],['Coverage','/platform'],['API','/platform'],['Auditability','/platform'],
+      ['Overview','/platform'],['Wallet Screening','/platform/wallet-screening'],
+      ['Transaction Monitoring','/platform/transaction-monitoring'],['Investigation Graph','/platform/investigation-graph'],
+      ['Cross-chain Tracing','/platform/cross-chain-tracing'],['White-box Risk Scoring','/platform/white-box-risk-scoring'],
+      ['API & Data Layer','/platform/api'],
     ]},
     { title:'Solutions', items:[
-      ['Investigations','/solutions/investigations'],['Wallet screening','/solutions'],
-      ['Monitoring','/solutions'],['Entity intelligence','/solutions'],
+      ['AML / KYT Compliance','/solutions/aml-kyt-compliance'],['Sanctions Screening','/solutions/sanctions-screening'],
+      ['Crypto Investigations','/solutions/crypto-investigations'],['Stablecoin Risk','/solutions/stablecoin-risk-management'],
+      ['Case Reporting','/solutions/case-reporting-audit-trails'],['Cross-chain Exposure','/solutions/cross-chain-exposure-analysis'],
+    ]},
+    { title:'Industries', items:[
+      ['VASPs & Exchanges','/industries/vasps-exchanges'],['Stablecoin Issuers','/industries/stablecoin-issuers'],
+      ['Financial Institutions','/industries/financial-institutions-fintechs'],['Law Enforcement','/industries/law-enforcement-investigators'],
+      ['Regulators','/industries/regulators-supervisors'],['Crypto Payments','/industries/crypto-payments-psps'],
     ]},
     { title:'Company', items:[
-      ['About','/company/about'],['Careers','/company/careers'],['Partners','/company/partners'],['Contact','/contact'],
-    ]},
-    { title:'Resources', items:[
-      ['Docs','/resources'],['Glossary','/resources/glossary'],['Fundamentals','/resources/fundamentals'],['Security','/company/security'],
+      ['About','/about'],['Contact','/contact'],
+      ['Privacy Policy','/privacy-policy'],['Terms & Conditions','/terms-and-conditions'],
     ]},
   ];
+
   return (
     <footer className="footer">
       <div className="container-wide">
-        <div style={{display:'grid', gridTemplateColumns:'1.4fr repeat(4, 1fr)', gap:32}}>
+        <div style={{display:'grid', gridTemplateColumns:'1.4fr repeat(4, 1fr)', gap:32}} className="max-lg:grid-cols-2 max-sm:grid-cols-1">
           <div>
-            <BitintLogo size={30} showWordmark={true} />
-            <p style={{color:'var(--text-muted)', fontSize:14, marginTop:16, maxWidth:280}}>
+            {/* Footer logo — MP4 animation with static fallback */}
+            <div style={{width: 44, height: 44, marginBottom: 8}}>
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                width={44}
+                height={44}
+                style={{display:'block', width:44, height:44, objectFit:'contain'}}
+                onError={(e) => { (e.currentTarget as HTMLVideoElement).style.display = 'none'; const next = e.currentTarget.nextElementSibling as HTMLElement; if(next) next.style.display = 'block'; }}
+              >
+                <source src="/bitint-animation.mp4" type="video/mp4" />
+              </video>
+              <div style={{display:'none'}}>
+                <BitintLogo size={30} showWordmark={false} />
+              </div>
+            </div>
+            <span style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 700,
+              fontSize: 22,
+              letterSpacing: '-0.03em',
+              color: 'var(--text)',
+            }}>
+              Bit<span style={{
+                background:'var(--gradient-brand)',
+                WebkitBackgroundClip:'text',
+                backgroundClip:'text',
+                color:'transparent',
+              }}>int</span>
+            </span>
+            <p style={{color:'var(--text-muted)', fontSize:14, marginTop:12, maxWidth:280, lineHeight:1.55}}>
               Blockchain intelligence for investigators, compliance teams, and the agencies that back them.
             </p>
-            <div style={{display:'flex', gap:10, marginTop:20, color:'var(--text-muted)'}}>
-              <Link to="#" className="nav-link" style={{padding:8}}><Icon name="linkedin" size={16}/></Link>
-              <Link to="#" className="nav-link" style={{padding:8}}><Icon name="github" size={16}/></Link>
-              <Link to="#" className="nav-link" style={{padding:8}}><Icon name="mail" size={16}/></Link>
+            <div style={{display:'flex', gap:8, marginTop:20, color:'var(--text-muted)'}}>
+              <a href="https://linkedin.com/company/bitint" target="_blank" rel="noopener noreferrer" className="nav-link" style={{padding:8}} aria-label="LinkedIn"><Icon name="linkedin" size={16}/></a>
+              <a href="https://x.com/bitintio" target="_blank" rel="noopener noreferrer" className="nav-link" style={{padding:8}} aria-label="X (Twitter)"><Icon name="x-twitter" size={16}/></a>
+              <a href="https://youtube.com/@bitint" target="_blank" rel="noopener noreferrer" className="nav-link" style={{padding:8}} aria-label="YouTube"><Icon name="youtube" size={16}/></a>
+              <a href="mailto:contact@bitint.io" className="nav-link" style={{padding:8}} aria-label="Email"><Icon name="mail" size={16}/></a>
+              <a href="https://wa.me/16504229155" target="_blank" rel="noopener noreferrer" className="nav-link" style={{padding:8}} aria-label="WhatsApp"><Icon name="whatsapp" size={16}/></a>
             </div>
           </div>
           {cols.map(c => (
@@ -38,10 +79,10 @@ export const Footer: React.FC = () => {
               <div style={{fontFamily:'var(--font-mono)', fontSize:11, textTransform:'uppercase', letterSpacing:'0.08em', color:'var(--text-subtle)', marginBottom:14}}>
                 {c.title}
               </div>
-              <div style={{display:'flex', flexDirection:'column', gap:10}}>
+              <div style={{display:'flex', flexDirection:'column', gap:8}}>
                 {c.items.map(([label, href]) => (
                   <Link key={label} to={href}
-                     style={{fontSize:14, color:'var(--text-muted)'}}
+                     style={{fontSize:13, color:'var(--text-muted)', transition:'color .15s ease'}}
                      onMouseEnter={(e)=>e.currentTarget.style.color='var(--text)'}
                      onMouseLeave={(e)=>e.currentTarget.style.color='var(--text-muted)'}>
                     {label}
@@ -53,16 +94,15 @@ export const Footer: React.FC = () => {
         </div>
         <hr className="divider" style={{margin:'48px 0 24px'}}/>
         <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', fontSize:12.5, color:'var(--text-subtle)', flexWrap:'wrap', gap:12}}>
-          <div className="flex gap-4">
+          <div style={{display:'flex', gap:16, flexWrap:'wrap'}}>
             <span>© {new Date().getFullYear()} Bitint — All rights reserved.</span>
-            <Link to="/legal/privacy" className="hover:text-text">Privacy Policy</Link>
-            <Link to="/legal/terms" className="hover:text-text">Terms & Conditions</Link>
+            <Link to="/privacy-policy" style={{transition:'color .15s ease'}} onMouseEnter={(e)=>e.currentTarget.style.color='var(--text)'} onMouseLeave={(e)=>e.currentTarget.style.color='var(--text-subtle)'}>Privacy Policy</Link>
+            <Link to="/terms-and-conditions" style={{transition:'color .15s ease'}} onMouseEnter={(e)=>e.currentTarget.style.color='var(--text)'} onMouseLeave={(e)=>e.currentTarget.style.color='var(--text-subtle)'}>Terms & Conditions</Link>
           </div>
           <div style={{display:'flex', gap:20}}>
             <span>SOC 2 Type II</span>
             <span>ISO 27001</span>
             <span>GDPR</span>
-            <span className="mono text-brand">v3.2.0</span>
           </div>
         </div>
       </div>

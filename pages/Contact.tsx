@@ -22,15 +22,14 @@ export const Contact = () => {
 
             <div style={{display:'grid', gap:16, marginTop:40}}>
               {[
-                {i:'mail',  t:'hello@bitint.io',   s:'General inquiries'},
+              {i:'mail',  t:'contact@bitint.io',   s:'General inquiries'},
                 {i:'phone', t:'+1 (415) 555-0113', s:'Mon–Fri, 9–5 PT'},
-                {i:'pin',   t:'San Francisco · London · Singapore', s:'Offices'},
               ].map(row => (
                 <div key={row.t} style={{display:'flex', gap:14, alignItems:'flex-start'}}>
                   <div style={{
                     width:40, height:40, borderRadius:10,
                     background:'var(--gradient-brand-soft)', color:'var(--violet-600)',
-                    display:'grid', placeItems:'center', border:'1px solid rgba(91,76,255,0.18)',
+                    display:'grid', placeItems:'center', border:'1px solid rgba(160,43,230,0.18)',
                   }}><Icon name={row.i} size={18} stroke={2}/></div>
                   <div>
                     <div style={{fontWeight:600, fontSize:15}}>{row.t}</div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './components/ThemeContext';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
@@ -47,16 +47,22 @@ const AppLayout = () => {
           {/* Resources Routes */}
           <Route path="/resources/*" element={<ResourcesRoutes />} />
 
-          {/* Company Routes */}
+          {/* Company Routes — support both old and new paths */}
           <Route path="/company/*" element={<Company />} />
+          <Route path="/about" element={<Navigate to="/company/about" replace />} />
 
           {/* Contact / Auth */}
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
 
-          {/* Legal */}
+          {/* Request Demo */}
+          <Route path="/request-demo" element={<Navigate to="/contact" replace />} />
+
+          {/* Legal — support both old and new paths */}
           <Route path="/legal/privacy" element={<Privacy />} />
           <Route path="/legal/terms" element={<Terms />} />
+          <Route path="/privacy-policy" element={<Privacy />} />
+          <Route path="/terms-and-conditions" element={<Terms />} />
 
           {/* Legacy Conversion */}
           <Route path="/thanks" element={<Thanks />} />
@@ -75,7 +81,7 @@ const App = () => {
       <Router>
         <Helmet>
           <title>Bitint | Blockchain Intelligence Platform</title>
-          <meta name="description" content="Blockchain intelligence for investigations, compliance, and risk management." />
+          <meta name="description" content="Blockchain intelligence for investigations, compliance, and risk management. White-box risk scoring, cross-chain tracing, and audit-ready evidence trails." />
         </Helmet>
             <AppLayout />
       </Router>

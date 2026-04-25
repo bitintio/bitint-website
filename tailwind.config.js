@@ -11,8 +11,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-        display: ['"Bricolage Grotesque"', 'sans-serif'],
+        sans: ['"Poppins"', 'sans-serif'],
+        display: ['"Poppins"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {

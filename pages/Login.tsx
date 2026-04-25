@@ -21,6 +21,18 @@ export const Login = () => {
       }} className="max-sm:px-6">
         <div style={{maxWidth:420, width:'100%', margin:'0 auto'}}>
           <BitintLogo size={34} showWordmark={true} />
+          <button
+            onClick={() => navigate('/')}
+            style={{
+              display:'inline-flex', alignItems:'center', gap:6,
+              marginTop:16, fontSize:13, color:'var(--text-muted)',
+              background:'none', border:'none', cursor:'pointer', padding:0,
+            }}
+            onMouseEnter={(e)=>e.currentTarget.style.color='var(--text)'}
+            onMouseLeave={(e)=>e.currentTarget.style.color='var(--text-muted)'}
+          >
+            <Icon name="arrow-right" size={14} stroke={2} /> Go back to homepage
+          </button>
           <h1 className="display-3" style={{marginTop:28, fontSize:34}}>Welcome back.</h1>
           <p className="muted" style={{marginTop:10, fontSize:15}}>Sign in to your Bitint workspace.</p>
 
@@ -69,9 +81,9 @@ export const Login = () => {
       </div>
 
       <div style={{
-        background: 'radial-gradient(1000px 600px at 30% 20%, rgba(91,76,255,0.45), transparent 55%),'
-                  + 'radial-gradient(700px 500px at 80% 80%, rgba(62,166,255,0.35), transparent 55%),'
-                  + 'linear-gradient(135deg, #1a1466 0%, #07061a 100%)',
+        background: 'radial-gradient(1000px 600px at 30% 20%, rgba(160,43,230,0.45), transparent 55%),'
+                  + 'radial-gradient(700px 500px at 80% 80%, rgba(43,255,255,0.25), transparent 55%),'
+                  + 'linear-gradient(135deg, #2B3990 0%, #10142D 100%)',
         position:'relative', overflow:'hidden', color:'#f5f4ff',
       }} className="max-lg:hidden">
         <div aria-hidden style={{
@@ -90,7 +102,7 @@ export const Login = () => {
             <h2 className="display-2" style={{color:'#fff', marginTop:18, fontSize:44}}>
               Your cases,<br/>
               <span style={{
-                background:'linear-gradient(135deg, #c5bcff, #9dd5ff)',
+                background:'linear-gradient(135deg, #c4b5fd, #2BFFFF)',
                 WebkitBackgroundClip:'text', backgroundClip:'text', color:'transparent',
               }}>already in progress.</span>
             </h2>

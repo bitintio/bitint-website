@@ -1,7 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Icon } from '../components/ui/Icons';
 import { CTASection } from './Home';
+import { SubPage, WorkflowSteps } from '../components/PageLayout';
 
 const CoverageVisual = () => {
   const chains = ['BTC','ETH','TRX','SOL','BSC','POL','ARB','OP','AVAX','LTC','BASE','ADA','TON','SUI'];
@@ -117,7 +118,7 @@ const APIVisual = () => {
   );
 }
 
-export const Platform = () => {
+const PlatformOverview = () => {
   const navigate = useNavigate();
   const onNav = (path: string) => navigate(path);
 
@@ -148,7 +149,7 @@ export const Platform = () => {
                 <div style={{
                   width:44, height:44, borderRadius:12,
                   background:'var(--gradient-brand-soft)', color:'var(--violet-600)',
-                  display:'grid', placeItems:'center', border:'1px solid rgba(91,76,255,0.18)',
+                  display:'grid', placeItems:'center', border:'1px solid rgba(160,43,230,0.18)',
                 }}><Icon name={p.icon} size={22} stroke={2}/></div>
                 <h3 style={{fontSize:18, marginTop:16}}>{p.title}</h3>
                 <p className="muted" style={{fontSize:13.5, marginTop:6, flex: 1}}>{p.desc}</p>
@@ -198,7 +199,7 @@ export const Platform = () => {
                 <div style={{display:'grid', gap:10, marginTop:22}}>
                   {row.bullets.map(b => (
                     <div key={b} style={{display:'flex', gap:10, alignItems:'center'}}>
-                      <div style={{width:20, height:20, borderRadius:6, background:'var(--gradient-brand-soft)', color:'var(--violet-600)', display:'grid', placeItems:'center', border:'1px solid rgba(91,76,255,0.2)'}}>
+                      <div style={{width:20, height:20, borderRadius:6, background:'var(--gradient-brand-soft)', color:'var(--violet-600)', display:'grid', placeItems:'center', border:'1px solid rgba(160,43,230,0.2)'}}>
                         <Icon name="check" size={12} stroke={2.5}/>
                       </div>
                       <span style={{fontSize:14.5}}>{b}</span>
@@ -216,3 +217,138 @@ export const Platform = () => {
     </>
   );
 };
+
+/* ─── Sub-pages ─── */
+
+const WalletScreening = () => (
+  <SubPage
+    seo={{title:'Wallet Screening', desc:'Real-time wallet risk screening across 150+ chains with explainable risk scores.'}}
+    hero={{eyebrow:'Wallet Screening', title:'Screen any wallet. Know the risk before you transact.', subtitle:'Sub-300ms API responses with full attribution provenance. Every risk score is explainable, auditable, and defensible — not a black-box number.'}}
+    sections={[
+      {title:'How it works', content: <WorkflowSteps steps={[
+        {step:'1', title:'Submit an address', desc:'Via API, dashboard, or bulk upload. Supports all major chain formats.'},
+        {step:'2', title:'Risk analysis runs', desc:'Our engine checks sanctions lists, clustering data, transaction patterns, entity attribution, and counterparty exposure.'},
+        {step:'3', title:'Receive a scored result', desc:'A 0–100 risk score with full breakdown: which signals fired, confidence levels, and source references.'},
+        {step:'4', title:'Act on the result', desc:'Approve, escalate, or block — with a full audit trail for every decision.'},
+      ]}/> },
+      {title:'Why it matters', content: <p className="muted" style={{fontSize:16, lineHeight:1.65, maxWidth:720}}>Regulators expect you to explain your risk decisions. Bitint's white-box scoring gives compliance teams the evidence they need — not just a number, but the reasoning behind it. Every screening result includes attribution sources, confidence scores, and a clear evidence trail.</p>},
+    ]}
+    relatedSolutions={[{label:'AML / KYT Compliance', href:'/solutions/aml-kyt-compliance'},{label:'Sanctions Screening', href:'/solutions/sanctions-screening'}]}
+    relatedIndustries={[{label:'VASPs & Exchanges', href:'/industries/vasps-exchanges'},{label:'Financial Institutions', href:'/industries/financial-institutions-fintechs'}]}
+  />
+);
+
+const TransactionMonitoring = () => (
+  <SubPage
+    seo={{title:'Transaction Monitoring', desc:'Streaming transaction alerts with tunable rules and real-time compliance workflows.'}}
+    hero={{eyebrow:'Transaction Monitoring', title:'Monitor every transaction. Alert on what matters.', subtitle:'Streaming alerts with 40+ configurable rule primitives. Tune thresholds, set counterparty exposure limits, and receive real-time notifications shaped to your SOPs.'}}
+    sections={[
+      {title:'How it works', content: <WorkflowSteps steps={[
+        {step:'1', title:'Define your monitoring rules', desc:'Set thresholds for transaction amounts, counterparty risk, sanctions exposure, velocity, and behavioral patterns.'},
+        {step:'2', title:'Ingest transaction streams', desc:'Connect via API or direct integration. Bitint processes transactions in real time as they hit the chain.'},
+        {step:'3', title:'Receive prioritized alerts', desc:'Alerts fire with full context: the triggering rule, the transaction graph, and the risk assessment.'},
+        {step:'4', title:'Investigate and resolve', desc:'One-click escalation to investigation workflows. Every alert resolution is logged for audit.'},
+      ]}/> },
+      {title:'Why it matters', content: <p className="muted" style={{fontSize:16, lineHeight:1.65, maxWidth:720}}>Generic monitoring tools flood compliance teams with false positives. Bitint's rule engine is designed by compliance professionals — tunable, explainable, and built to reduce noise while catching real risk. Every alert ships with enough context to make a decision without switching tools.</p>},
+    ]}
+    relatedSolutions={[{label:'AML / KYT Compliance', href:'/solutions/aml-kyt-compliance'},{label:'Case Reporting', href:'/solutions/case-reporting-audit-trails'}]}
+    relatedIndustries={[{label:'VASPs & Exchanges', href:'/industries/vasps-exchanges'},{label:'Crypto Payments', href:'/industries/crypto-payments-psps'}]}
+  />
+);
+
+const InvestigationGraph = () => (
+  <SubPage
+    seo={{title:'Investigation Graph', desc:'Graph-first investigation workflows with automatic clustering and evidence trail generation.'}}
+    hero={{eyebrow:'Investigation Graph', title:'Trace funds. Build cases. Follow every path.', subtitle:'A graph-native investigation environment that automatically clusters addresses, identifies entities, and generates case-ready evidence packages.'}}
+    sections={[
+      {title:'How it works', content: <WorkflowSteps steps={[
+        {step:'1', title:'Start with any address or transaction', desc:'Seed your investigation from a wallet, transaction hash, entity name, or imported case data.'},
+        {step:'2', title:'Expand the graph', desc:'Automatic clustering, cross-chain bridge detection, and counterparty identification. Follow funds through mixers, DEXs, and bridges.'},
+        {step:'3', title:'Annotate and collaborate', desc:'Add notes, tag entities, share graph states with team members. All actions are version-controlled.'},
+        {step:'4', title:'Export the evidence', desc:'Generate court-ready PDF reports, signed data exports, and structured evidence packages.'},
+      ]}/> },
+      {title:'Why it matters', content: <p className="muted" style={{fontSize:16, lineHeight:1.65, maxWidth:720}}>Investigations succeed or fail based on the quality of the graph. Bitint's investigation environment is built for analysts who need to follow funds across chains, through mixers, and into real-world entities — with every step documented and defensible.</p>},
+    ]}
+    relatedSolutions={[{label:'Crypto Investigations', href:'/solutions/crypto-investigations'},{label:'Cross-chain Exposure', href:'/solutions/cross-chain-exposure-analysis'}]}
+    relatedIndustries={[{label:'Law Enforcement', href:'/industries/law-enforcement-investigators'},{label:'Regulators', href:'/industries/regulators-supervisors'}]}
+  />
+);
+
+const CrossChainTracing = () => (
+  <SubPage
+    seo={{title:'Cross-chain Tracing', desc:'Follow funds across 150+ chains through bridges, DEXs, and cross-chain protocols.'}}
+    hero={{eyebrow:'Cross-chain Tracing', title:'Funds don\'t stay on one chain. Neither should your tools.', subtitle:'Automatic bridge detection, cross-chain hop resolution, and unified transaction timelines across 150+ chains. See the full picture, not just one network.'}}
+    sections={[
+      {title:'How it works', content: <WorkflowSteps steps={[
+        {step:'1', title:'Detect cross-chain movement', desc:'Our engine automatically identifies when funds move through bridges, wrapped token protocols, and cross-chain DEXs.'},
+        {step:'2', title:'Resolve the destination', desc:'Map the source transaction to its destination chain, preserving the attribution and risk context.'},
+        {step:'3', title:'Build a unified timeline', desc:'See every hop on a single timeline — regardless of which chains are involved.'},
+      ]}/> },
+      {title:'Why it matters', content: <p className="muted" style={{fontSize:16, lineHeight:1.65, maxWidth:720}}>Illicit actors deliberately use cross-chain bridges to break traceability. Bitint resolves these hops natively — no manual chain-hopping, no losing the trail at a bridge contract.</p>},
+    ]}
+    relatedSolutions={[{label:'Cross-chain Exposure Analysis', href:'/solutions/cross-chain-exposure-analysis'},{label:'Crypto Investigations', href:'/solutions/crypto-investigations'}]}
+    relatedIndustries={[{label:'Law Enforcement', href:'/industries/law-enforcement-investigators'},{label:'Web3 / DeFi Risk', href:'/industries/web3-defi-risk-teams'}]}
+  />
+);
+
+const EntityIntelligence = () => (
+  <SubPage
+    seo={{title:'Entity Intelligence', desc:'Curated, sourced, scored entity attribution for 280M+ blockchain entities.'}}
+    hero={{eyebrow:'Entity Intelligence', title:'Know who you\'re dealing with. Every entity, sourced and scored.', subtitle:'280M+ entity attributions — human-reviewed, confidence-scored, and versioned. No unexplained labels, no black-box clustering.'}}
+    sections={[
+      {title:'Why it matters', content: <p className="muted" style={{fontSize:16, lineHeight:1.65, maxWidth:720}}>Attribution quality determines investigation quality. Every Bitint entity label carries a confidence score (0–100), the heuristic chain that produced it, and a link to the last human reviewer. You can diff attribution over time to see when and why labels changed.</p>},
+    ]}
+    relatedSolutions={[{label:'VASP Due Diligence', href:'/solutions/vasp-counterparty-due-diligence'},{label:'Sanctions Screening', href:'/solutions/sanctions-screening'}]}
+    relatedIndustries={[{label:'Financial Institutions', href:'/industries/financial-institutions-fintechs'},{label:'Regulators', href:'/industries/regulators-supervisors'}]}
+  />
+);
+
+const WhiteBoxRiskScoring = () => (
+  <SubPage
+    seo={{title:'White-box Risk Scoring', desc:'Explainable, auditable risk scoring with full attribution provenance.'}}
+    hero={{eyebrow:'White-box Risk Scoring', title:'Every score has a reason. Every reason has a source.', subtitle:'Explainable risk intelligence that compliance teams can defend to regulators, auditors, and courts. No black boxes. No unexplained numbers.'}}
+    sections={[
+      {title:'How it works', content: <WorkflowSteps steps={[
+        {step:'1', title:'Multi-signal analysis', desc:'Sanctions lists, clustering data, behavioral patterns, counterparty exposure, and entity attribution are all evaluated.'},
+        {step:'2', title:'Weighted scoring', desc:'Each signal contributes to the final score with an explicit weight. You can see exactly which signals moved the score.'},
+        {step:'3', title:'Source attribution', desc:'Every factor links back to its data source — OFAC SDN list, cluster co-spend heuristic, partner intelligence feed, or analyst review.'},
+        {step:'4', title:'Audit trail', desc:'The full scoring rationale is preserved as an immutable record. Replay any score at any point in time.'},
+      ]}/> },
+      {title:'Why it matters', content: <p className="muted" style={{fontSize:16, lineHeight:1.65, maxWidth:720}}>Regulators increasingly demand that compliance teams explain their risk decisions — not just show a number. White-box scoring is not a feature; it's a regulatory requirement that most tools fail to meet. Bitint builds explainability into every score by default.</p>},
+    ]}
+    relatedSolutions={[{label:'AML / KYT Compliance', href:'/solutions/aml-kyt-compliance'},{label:'Case Reporting', href:'/solutions/case-reporting-audit-trails'}]}
+    relatedIndustries={[{label:'VASPs & Exchanges', href:'/industries/vasps-exchanges'},{label:'Stablecoin Issuers', href:'/industries/stablecoin-issuers'}]}
+  />
+);
+
+const APIPage = () => (
+  <SubPage
+    seo={{title:'API & Data Layer', desc:'REST API, WebSocket streams, and SDKs for screening, monitoring, and investigation workflows.'}}
+    hero={{eyebrow:'API & Data Layer', title:'Your stack. Our intelligence.', subtitle:'A clean REST API with sub-300ms screening, WebSocket streams for real-time monitoring, and SDKs in Python, TypeScript, and Go. Plug into your existing infrastructure.'}}
+    sections={[
+      {title:'Integration options', content: <WorkflowSteps steps={[
+        {step:'→', title:'REST API', desc:'Screening, entity lookup, transaction tracing, and bulk operations. OpenAPI spec included.'},
+        {step:'→', title:'WebSocket Streams', desc:'Real-time transaction and alert streams. Subscribe to address sets, entity types, or risk thresholds.'},
+        {step:'→', title:'SDKs', desc:'Python, TypeScript, and Go. Typed, documented, and maintained.'},
+        {step:'→', title:'SIEM Plugins', desc:'Splunk, Elastic, Sentinel — pre-built connectors for your security stack.'},
+      ]}/> },
+    ]}
+    relatedSolutions={[{label:'AML / KYT Compliance', href:'/solutions/aml-kyt-compliance'},{label:'Sanctions Screening', href:'/solutions/sanctions-screening'}]}
+    relatedIndustries={[{label:'VASPs & Exchanges', href:'/industries/vasps-exchanges'},{label:'Crypto Payments', href:'/industries/crypto-payments-psps'}]}
+  />
+);
+
+/* ─── Router ─── */
+
+export const Platform = () => (
+  <Routes>
+    <Route index element={<PlatformOverview />} />
+    <Route path="wallet-screening" element={<WalletScreening />} />
+    <Route path="transaction-monitoring" element={<TransactionMonitoring />} />
+    <Route path="investigation-graph" element={<InvestigationGraph />} />
+    <Route path="cross-chain-tracing" element={<CrossChainTracing />} />
+    <Route path="entity-intelligence" element={<EntityIntelligence />} />
+    <Route path="white-box-risk-scoring" element={<WhiteBoxRiskScoring />} />
+    <Route path="api" element={<APIPage />} />
+  </Routes>
+);

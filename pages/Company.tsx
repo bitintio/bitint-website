@@ -1,8 +1,7 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Button } from '../components/ui/Button';
-import { Shield, Flag, Users, Handshake, Mail, Lock } from 'lucide-react';
+import { Icon } from '../components/ui/Icons';
 import { NotFound } from './GenericPages';
 
 const About = () => (
@@ -11,41 +10,59 @@ const About = () => (
             <title>About Us | Bitint</title>
             <meta name="description" content="Bitint was founded by former intelligence officers and cryptographers to bring scientific rigor to crypto forensics." />
         </Helmet>
-        <h1 className="text-5xl font-display font-bold mb-8">About Bitint</h1>
-        <p className="text-xl text-text-secondary max-w-3xl mb-16">
+        <h1 className="display-2 font-display font-bold mb-8">About Bitint</h1>
+        <p className="text-xl text-text-secondary max-w-3xl mb-16" style={{lineHeight: 1.6}}>
             We believe that blockchain transparency shouldn't be a guessing game.
             Bitint was founded by former intelligence officers and cryptographers to bring scientific rigor to crypto forensics.
         </p>
 
         <div className="grid md:grid-cols-2 gap-16">
             <div>
-                <h3 className="text-2xl font-bold mb-4">Our Principles</h3>
-                <ul className="space-y-4">
+                <h3 className="text-2xl font-bold mb-6">Our Principles</h3>
+                <ul className="space-y-6">
                     <li className="flex gap-4">
-                        <div className="bg-surface-light p-2 rounded"><Flag size={20} /></div>
+                        <div className="p-2 rounded" style={{background: 'var(--surface-2)', color: 'var(--violet-600)'}}><Icon name="flag" size={20} /></div>
                         <div>
-                            <h4 className="font-bold">Accuracy First</h4>
+                            <h4 className="font-bold mb-1">Accuracy First</h4>
                             <p className="text-text-secondary">We prefer "Unknown" over a false positive. In our line of work, being wrong destroys lives.</p>
                         </div>
                     </li>
                     <li className="flex gap-4">
-                        <div className="bg-surface-light p-2 rounded"><Lock size={20} /></div>
+                        <div className="p-2 rounded" style={{background: 'var(--surface-2)', color: 'var(--violet-600)'}}><Icon name="shield" size={20} /></div>
                         <div>
-                            <h4 className="font-bold">Privacy by Design</h4>
+                            <h4 className="font-bold mb-1">Privacy by Design</h4>
                             <p className="text-text-secondary">We trace funds, not people. We only unmask entities when evidence supports it.</p>
+                        </div>
+                    </li>
+                    <li className="flex gap-4">
+                        <div className="p-2 rounded" style={{background: 'var(--surface-2)', color: 'var(--violet-600)'}}><Icon name="check" size={20} /></div>
+                        <div>
+                            <h4 className="font-bold mb-1">Transparency & Trust</h4>
+                            <p className="text-text-secondary">Every attribution is sourced and scored. We believe in explainable intelligence, not black boxes.</p>
+                        </div>
+                    </li>
+                    <li className="flex gap-4">
+                        <div className="p-2 rounded" style={{background: 'var(--surface-2)', color: 'var(--violet-600)'}}><Icon name="users" size={20} /></div>
+                        <div>
+                            <h4 className="font-bold mb-1">Mission-Driven</h4>
+                            <p className="text-text-secondary">We exist to make blockchain ecosystems safer for legitimate users, institutions, and governments alike.</p>
                         </div>
                     </li>
                 </ul>
             </div>
             <div>
-                <h3 className="text-2xl font-bold mb-4">Leadership</h3>
+                <h3 className="text-2xl font-bold mb-6">Leadership</h3>
                 <div className="grid grid-cols-2 gap-4">
-                    {['CEO', 'CTO', 'Head of Intelligence', 'General Counsel'].map(role => (
-                        <div key={role} className="p-4 bg-surface border border-border rounded text-center">
-                            <div className="w-16 h-16 bg-surface-light rounded-full mx-auto mb-3"></div>
-                            <div className="font-bold">{role}</div>
-                        </div>
-                    ))}
+                    <div className="p-6 bg-surface border border-border rounded-xl text-center">
+                        <div className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold" style={{background: 'var(--gradient-brand-soft)', color: 'var(--violet-600)'}}>GH</div>
+                        <div className="font-bold text-lg">Gal Hadad</div>
+                        <div className="text-text-secondary text-sm mt-1">Co-Founder & CEO</div>
+                    </div>
+                    <div className="p-6 bg-surface border border-border rounded-xl text-center">
+                        <div className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold" style={{background: 'var(--gradient-brand-soft)', color: 'var(--violet-600)'}}>AE</div>
+                        <div className="font-bold text-lg">Avi Elmaleh</div>
+                        <div className="text-text-secondary text-sm mt-1">Co-Founder</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,7 +75,7 @@ const Careers = () => (
             <title>Careers | Bitint</title>
             <meta name="description" content="Join the mission. Build the tools that secure the future of finance." />
         </Helmet>
-        <h1 className="text-5xl font-display font-bold mb-6">Join the Mission</h1>
+        <h1 className="display-2 font-display font-bold mb-6">Join the Mission</h1>
         <p className="text-xl text-text-secondary mb-12">Build the tools that secure the future of finance.</p>
 
         <div className="space-y-4 max-w-4xl">
@@ -68,12 +85,12 @@ const Careers = () => (
                 { title: 'Intelligence Analyst', team: 'Investigations', loc: 'Washington DC' },
                 { title: 'Solutions Architect', team: 'Sales Engineering', loc: 'New York' },
             ].map((job, i) => (
-                <div key={i} className="flex flex-col md:flex-row md:items-center justify-between p-6 bg-surface border border-border rounded-lg hover:border-brand transition-colors">
+                <div key={i} className="flex flex-col md:flex-row md:items-center justify-between p-6 bg-surface border border-border rounded-lg" style={{transition: 'border-color .15s ease'}} onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--violet-500)'} onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--border)'}>
                     <div>
-                        <h3 className="font-bold text-lg">{job.title}</h3>
+                        <h3 className="font-bold text-lg mb-1">{job.title}</h3>
                         <p className="text-text-secondary text-sm">{job.team} • {job.loc}</p>
                     </div>
-                    <Button variant="secondary" size="sm" className="mt-4 md:mt-0" href="/company/contact">Apply Now</Button>
+                    <Link to="/contact" className="btn btn-ghost btn-sm mt-4 md:mt-0">Apply Now</Link>
                 </div>
             ))}
         </div>
@@ -87,8 +104,8 @@ const Security = () => (
             <meta name="description" content="Security is our core competency. SOC2 Type II and ISO 27001 compliant." />
         </Helmet>
         <div className="max-w-3xl">
-            <h1 className="text-4xl font-display font-bold mb-8 flex items-center gap-3"><Shield className="text-brand" /> Security & Trust</h1>
-            <p className="text-lg text-text-secondary mb-12">
+            <h1 className="display-2 font-display font-bold mb-8 flex items-center gap-3"><span style={{color: 'var(--violet-600)'}}><Icon name="shield" size={40} /></span> Security & Trust</h1>
+            <p className="text-lg text-text-secondary mb-12" style={{lineHeight: 1.6}}>
                 Security is our core competency. We maintain a rigorous security posture aligned with SOC2 Type II and ISO 27001 frameworks.
             </p>
 
@@ -106,7 +123,7 @@ const Security = () => (
                 <p className="text-text-secondary mb-6 text-sm">
                     We will not pursue legal action against researchers who report issues in good faith and comply with this policy.
                 </p>
-                <Button href="mailto:security@example.com" variant="outline">Report a Vulnerability</Button>
+                <a href="mailto:contact@bitint.io" className="btn btn-ghost">Report a Vulnerability</a>
             </div>
 
             <h2 className="text-2xl font-bold mb-4">Certifications (In Process)</h2>
@@ -124,19 +141,19 @@ const Partners = () => (
             <title>Partners | Bitint</title>
             <meta name="description" content="Technology and investigative partners for complex asset recovery." />
         </Helmet>
-        <h1 className="text-5xl font-display font-bold mb-8">Partners</h1>
+        <h1 className="display-2 font-display font-bold mb-8">Partners</h1>
         <div className="grid md:grid-cols-2 gap-12">
             <div className="bg-surface border border-border rounded-xl p-8">
-                <Handshake className="text-brand mb-4" size={32} />
+                <div style={{color: 'var(--violet-600)', marginBottom: 16}}><Icon name="plug" size={32} /></div>
                 <h3 className="text-2xl font-bold mb-4">Technology Partners</h3>
-                <p className="text-text-secondary mb-6">Integrate Bitint data directly into your platform. We offer OEM and white-label agreements for exchanges and wallet providers.</p>
-                <Button href="/company/contact" variant="secondary">Become a Partner</Button>
+                <p className="text-text-secondary mb-6" style={{lineHeight: 1.6}}>Integrate Bitint data directly into your platform. We offer OEM and white-label agreements for exchanges and wallet providers.</p>
+                <Link to="/contact" className="btn btn-ghost">Become a Partner</Link>
             </div>
             <div className="bg-surface border border-border rounded-xl p-8">
-                <Users className="text-brand mb-4" size={32} />
+                <div style={{color: 'var(--violet-600)', marginBottom: 16}}><Icon name="users" size={32} /></div>
                 <h3 className="text-2xl font-bold mb-4">Investigative Partners</h3>
-                <p className="text-text-secondary mb-6">We work with certified forensic accounting firms and private intelligence agencies to support complex asset recovery cases.</p>
-                <Button href="/company/contact" variant="secondary">Join Network</Button>
+                <p className="text-text-secondary mb-6" style={{lineHeight: 1.6}}>We work with certified forensic accounting firms and private intelligence agencies to support complex asset recovery cases.</p>
+                <Link to="/contact" className="btn btn-ghost">Join Network</Link>
             </div>
         </div>
     </div>
@@ -149,7 +166,7 @@ export const Company = () => {
             <Route path="careers" element={<Careers />} />
             <Route path="security" element={<Security />} />
             <Route path="partners" element={<Partners />} />
-            <Route path="contact" element={<Link to="/request-demo" />} />
+            <Route path="contact" element={<Link to="/contact" />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );

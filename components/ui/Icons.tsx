@@ -1,61 +1,33 @@
 import React from 'react';
 
+import { useTheme } from '../ThemeContext';
+
 export function BitintLogo({ size = 28, mono = false, showWordmark = true }: { size?: number, mono?: boolean, showWordmark?: boolean }) {
-  const id = React.useId();
+  const { theme } = useTheme();
+  
+  // 1.svg (Light Mark), 2.svg (Dark Mark)
+  // 5.svg (Light Full), 6.svg (Dark Full)
+  
+  const iconSrc = theme === 'dark' ? '/2.svg' : '/1.svg';
+  const fullSrc = theme === 'dark' ? '/6.svg' : '/5.svg';
+
   return (
-    <div style={{display:'inline-flex', alignItems:'center', gap: 10}}>
-      <svg width={size} height={size} viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <defs>
-          <linearGradient id={`lg-${id}`} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#7d6dff"/>
-            <stop offset="60%" stopColor="#5b4cff"/>
-            <stop offset="100%" stopColor="#3ea6ff"/>
-          </linearGradient>
-          <linearGradient id={`lg2-${id}`} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#a094ff"/>
-            <stop offset="100%" stopColor="#5b4cff"/>
-          </linearGradient>
-        </defs>
-        <path d="M24 3 L42 13 L42 35 L24 45 L6 35 L6 13 Z"
-              fill={mono ? 'currentColor' : `url(#lg-${id})`}
-              opacity={mono ? 0.12 : 0.14}/>
-        <path d="M24 3 L42 13 L42 35 L24 45 L6 35 L6 13 Z"
-              fill="none" stroke={mono ? 'currentColor' : `url(#lg-${id})`} strokeWidth="1.5"/>
-        <g transform="translate(24,24)">
-          <path d="M0,-11 L10,-5 L0,1 L-10,-5 Z" fill={mono ? 'currentColor' : `url(#lg2-${id})`} opacity="0.9"/>
-          <path d="M0,-5 L10,1 L0,7 L-10,1 Z" fill={mono ? 'currentColor' : `url(#lg-${id})`} opacity="0.95"/>
-          <path d="M0,1 L10,7 L0,13 L-10,7 Z" fill={mono ? 'currentColor' : `url(#lg2-${id})`}/>
-        </g>
-        <circle cx="6" cy="13" r="1.6" fill={mono ? 'currentColor' : '#3ea6ff'}/>
-        <circle cx="42" cy="13" r="1.6" fill={mono ? 'currentColor' : '#3ea6ff'}/>
-        <circle cx="42" cy="35" r="1.6" fill={mono ? 'currentColor' : '#3ea6ff'}/>
-        <circle cx="6"  cy="35" r="1.6" fill={mono ? 'currentColor' : '#3ea6ff'}/>
-        <circle cx="24" cy="45" r="1.6" fill={mono ? 'currentColor' : '#3ea6ff'}/>
-      </svg>
-      {showWordmark && (
-        <span style={{
-          fontFamily: 'var(--font-display)',
-          fontWeight: 700,
-          fontSize: size * 0.72,
-          letterSpacing: '-0.03em',
-          color: 'var(--text)',
-        }}>
-          Bit<span style={{
-            background:'var(--gradient-brand)',
-            WebkitBackgroundClip:'text',
-            backgroundClip:'text',
-            color:'transparent',
-          }}>int</span>
-        </span>
-      )}
+    <div style={{display:'inline-flex', alignItems:'center'}}>
+      <img
+        src={showWordmark ? fullSrc : iconSrc}
+        alt="Bitint"
+        style={{ display: 'block', height: size, width: 'auto' }}
+      />
     </div>
   );
 }
 
-export function Icon({ name, size = 18, stroke = 1.6 }: { name: string, size?: number, stroke?: number }) {
+export function Icon({ name, size = 18, stroke = 1.6, style, className }: { name: string, size?: number, stroke?: number, style?: React.CSSProperties, className?: string }) {
   const common = {
     width: size, height: size, viewBox:'0 0 24 24', fill:'none',
-    stroke:'currentColor', strokeWidth: stroke, strokeLinecap:'round', strokeLinejoin:'round'
+    stroke:'currentColor', strokeWidth: stroke, 
+    strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const,
+    style, className
   };
   switch(name) {
     case 'arrow-right': return <svg {...common}><path d="M5 12h14M13 5l7 7-7 7"/></svg>;
@@ -83,11 +55,14 @@ export function Icon({ name, size = 18, stroke = 1.6 }: { name: string, size?: n
     case 'pin': return <svg {...common}><path d="M12 22s-8-7.6-8-13a8 8 0 1 1 16 0c0 5.4-8 13-8 13Z"/><circle cx="12" cy="9" r="3"/></svg>;
     case 'github': return <svg {...common}><path d="M9 19c-4.3 1.4-4.3-2.5-6-3M15 21v-3.5a3 3 0 0 0-.9-2.3c3-.3 6-1.5 6-6.5A4.7 4.7 0 0 0 19 5.3 4.3 4.3 0 0 0 18.9 2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6 0C7 1.7 6 2 6 2a4.3 4.3 0 0 0-.1 3.3 4.7 4.7 0 0 0-1.2 3.4c0 4.9 3 6.2 6 6.5a3 3 0 0 0-.9 2.3V21"/></svg>;
     case 'x': return <svg {...common}><path d="M18 6 6 18M6 6l12 12"/></svg>;
+    case 'x-twitter': return <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>;
+    case 'youtube': return <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.7 31.7 0 0 0 0 12a31.7 31.7 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.7 31.7 0 0 0 24 12a31.7 31.7 0 0 0-.5-5.81zM9.54 15.57V8.43L15.82 12l-6.28 3.57z"/></svg>;
     case 'menu': return <svg {...common}><path d="M3 12h18M3 6h18M3 18h18"/></svg>;
     case 'linkedin': return <svg {...common}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6ZM2 9h4v12H2zM4 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></svg>;
     case 'sun': return <svg {...common}><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>;
     case 'moon': return <svg {...common}><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>;
     case 'settings': return <svg {...common}><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>;
+    case 'whatsapp': return <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>;
     default: return <svg {...common}><circle cx="12" cy="12" r="3"/></svg>;
   }
 }

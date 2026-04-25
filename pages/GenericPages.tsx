@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
-import { CheckCircle } from 'lucide-react';
+import { Icon } from '../components/ui/Icons';
 import ReactMarkdown from 'react-markdown';
 import rehypeSlug from 'rehype-slug';
 import { Helmet } from 'react-helmet-async';
@@ -11,16 +10,16 @@ import privacyContent from '../data/privacy.md?raw';
 export const Thanks = () => (
   <div className="min-h-[70vh] flex items-center justify-center bg-background">
     <div className="text-center p-8 max-w-md">
-      <div className="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
-        <CheckCircle size={32} />
+      <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{background: 'rgba(16, 185, 129, 0.15)', color: '#10b981'}}>
+        <Icon name="check" size={32} />
       </div>
-      <h1 className="text-3xl font-display font-bold mb-4">Request Received</h1>
-      <p className="text-text-secondary mb-8">
+      <h1 className="display-2 font-display font-bold mb-4">Request Received</h1>
+      <p className="text-text-secondary mb-8" style={{lineHeight: 1.6}}>
         Thank you for your interest in Bitint. Our team will review your organization's details and reach out within 24 hours to schedule your demo.
       </p>
       <div className="flex flex-col gap-3">
-        <Button href="/">Return Home</Button>
-        <Button href="/resources/case-studies" variant="secondary">Read Case Studies</Button>
+        <Link to="/" className="btn btn-primary">Return Home</Link>
+        <Link to="/resources" className="btn btn-ghost">Read Resources</Link>
       </div>
     </div>
   </div>
@@ -31,7 +30,7 @@ export const NotFound = () => (
     <div className="text-center">
       <h1 className="text-9xl font-display font-bold text-surface-light">404</h1>
       <p className="text-xl text-text-secondary mb-8">Page not found.</p>
-      <Button href="/">Return Home</Button>
+      <Link to="/" className="btn btn-primary">Return Home</Link>
     </div>
   </div>
 );
