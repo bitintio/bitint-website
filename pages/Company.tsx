@@ -20,32 +20,56 @@ const About = () => (
             <div>
                 <h3 className="text-2xl font-bold mb-6">Our Principles</h3>
                 <ul className="space-y-6">
-                    <li className="flex gap-4">
-                        <div className="p-2 rounded" style={{background: 'var(--surface-2)', color: 'var(--violet-600)'}}><Icon name="flag" size={20} /></div>
+                    <li className="flex gap-5 items-start">
+                        <div style={{
+                            width: 48, height: 48, borderRadius: 14, flexShrink: 0,
+                            background: 'var(--gradient-brand-soft)', 
+                            border: '1px solid rgba(160,43,230,0.18)',
+                            color: 'var(--violet-600)',
+                            display: 'grid', placeItems: 'center'
+                        }}><Icon name="flag" size={22} /></div>
                         <div>
-                            <h4 className="font-bold mb-1">Accuracy First</h4>
-                            <p className="text-text-secondary">We prefer "Unknown" over a false positive. In our line of work, being wrong destroys lives.</p>
+                            <h4 className="font-bold text-lg mb-2">Accuracy First</h4>
+                            <p className="text-text-secondary leading-relaxed">We prefer "Unknown" over a false positive. In our line of work, being wrong destroys lives.</p>
                         </div>
                     </li>
-                    <li className="flex gap-4">
-                        <div className="p-2 rounded" style={{background: 'var(--surface-2)', color: 'var(--violet-600)'}}><Icon name="shield" size={20} /></div>
+                    <li className="flex gap-5 items-start">
+                        <div style={{
+                            width: 48, height: 48, borderRadius: 14, flexShrink: 0,
+                            background: 'var(--gradient-brand-soft)', 
+                            border: '1px solid rgba(160,43,230,0.18)',
+                            color: 'var(--violet-600)',
+                            display: 'grid', placeItems: 'center'
+                        }}><Icon name="shield" size={22} /></div>
                         <div>
-                            <h4 className="font-bold mb-1">Privacy by Design</h4>
-                            <p className="text-text-secondary">We trace funds, not people. We only unmask entities when evidence supports it.</p>
+                            <h4 className="font-bold text-lg mb-2">Privacy by Design</h4>
+                            <p className="text-text-secondary leading-relaxed">We trace funds, not people. We only unmask entities when evidence supports it.</p>
                         </div>
                     </li>
-                    <li className="flex gap-4">
-                        <div className="p-2 rounded" style={{background: 'var(--surface-2)', color: 'var(--violet-600)'}}><Icon name="check" size={20} /></div>
+                    <li className="flex gap-5 items-start">
+                        <div style={{
+                            width: 48, height: 48, borderRadius: 14, flexShrink: 0,
+                            background: 'var(--gradient-brand-soft)', 
+                            border: '1px solid rgba(160,43,230,0.18)',
+                            color: 'var(--violet-600)',
+                            display: 'grid', placeItems: 'center'
+                        }}><Icon name="check" size={22} /></div>
                         <div>
-                            <h4 className="font-bold mb-1">Transparency & Trust</h4>
-                            <p className="text-text-secondary">Every attribution is sourced and scored. We believe in explainable intelligence, not black boxes.</p>
+                            <h4 className="font-bold text-lg mb-2">Transparency & Trust</h4>
+                            <p className="text-text-secondary leading-relaxed">Every attribution is sourced and scored. We believe in explainable intelligence, not black boxes.</p>
                         </div>
                     </li>
-                    <li className="flex gap-4">
-                        <div className="p-2 rounded" style={{background: 'var(--surface-2)', color: 'var(--violet-600)'}}><Icon name="users" size={20} /></div>
+                    <li className="flex gap-5 items-start">
+                        <div style={{
+                            width: 48, height: 48, borderRadius: 14, flexShrink: 0,
+                            background: 'var(--gradient-brand-soft)', 
+                            border: '1px solid rgba(160,43,230,0.18)',
+                            color: 'var(--violet-600)',
+                            display: 'grid', placeItems: 'center'
+                        }}><Icon name="users" size={22} /></div>
                         <div>
-                            <h4 className="font-bold mb-1">Mission-Driven</h4>
-                            <p className="text-text-secondary">We exist to make blockchain ecosystems safer for legitimate users, institutions, and governments alike.</p>
+                            <h4 className="font-bold text-lg mb-2">Mission-Driven</h4>
+                            <p className="text-text-secondary leading-relaxed">We exist to make blockchain ecosystems safer for legitimate users, institutions, and governments alike.</p>
                         </div>
                     </li>
                 </ul>

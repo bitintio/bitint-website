@@ -20,8 +20,13 @@ export const Footer: React.FC = () => {
       ['Financial Institutions','/industries/financial-institutions-fintechs'],['Law Enforcement','/industries/law-enforcement-investigators'],
       ['Regulators','/industries/regulators-supervisors'],['Crypto Payments','/industries/crypto-payments-psps'],
     ]},
+    { title:'Resources', items:[
+      ['Glossary','/resources/glossary'],['FAQ','/resources/faq'],
+      ['Fundamentals','/resources/fundamentals'],['Blog','/resources/blog'],
+    ]},
     { title:'Company', items:[
-      ['About','/about'],['Contact','/contact'],
+      ['About Us','/company/about'],['Careers','/company/careers'],
+      ['Partners','/company/partners'],['Contact Us','/company/contact'],
       ['Privacy Policy','/privacy-policy'],['Terms & Conditions','/terms-and-conditions'],
     ]},
   ];
@@ -29,41 +34,21 @@ export const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="container-wide">
-        <div style={{display:'grid', gridTemplateColumns:'1.4fr repeat(4, 1fr)', gap:32}} className="max-lg:grid-cols-2 max-sm:grid-cols-1">
+        <div style={{display:'grid', gridTemplateColumns:'1.4fr repeat(5, 1fr)', gap:32}} className="max-lg:grid-cols-2 max-sm:grid-cols-1">
           <div>
-            {/* Footer logo — MP4 animation with static fallback */}
-            <div style={{width: 44, height: 44, marginBottom: 8}}>
+            <Link to="/" style={{display: 'inline-block', marginBottom: 20}}>
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                width={44}
-                height={44}
-                style={{display:'block', width:44, height:44, objectFit:'contain'}}
-                onError={(e) => { (e.currentTarget as HTMLVideoElement).style.display = 'none'; const next = e.currentTarget.nextElementSibling as HTMLElement; if(next) next.style.display = 'block'; }}
+                style={{display: 'block', height: 48, width: 'auto', objectFit: 'contain'}}
               >
-                <source src="/bitint-animation.mp4" type="video/mp4" />
+                <source src="/Bitint_Transparent.mov" type="video/quicktime" />
+                <source src="/Bitint_Transparent.mp4" type="video/mp4" />
               </video>
-              <div style={{display:'none'}}>
-                <BitintLogo size={30} showWordmark={false} />
-              </div>
-            </div>
-            <span style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 700,
-              fontSize: 22,
-              letterSpacing: '-0.03em',
-              color: 'var(--text)',
-            }}>
-              Bit<span style={{
-                background:'var(--gradient-brand)',
-                WebkitBackgroundClip:'text',
-                backgroundClip:'text',
-                color:'transparent',
-              }}>int</span>
-            </span>
-            <p style={{color:'var(--text-muted)', fontSize:14, marginTop:12, maxWidth:280, lineHeight:1.55}}>
+            </Link>
+            <p style={{color:'var(--text-muted)', fontSize:14, marginTop:10, maxWidth:280, lineHeight:1.55}}>
               Blockchain intelligence for investigators, compliance teams, and the agencies that back them.
             </p>
             <div style={{display:'flex', gap:8, marginTop:20, color:'var(--text-muted)'}}>

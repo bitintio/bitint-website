@@ -14,6 +14,8 @@ import { ResourcesRoutes } from './pages/Resources';
 import { Thanks, NotFound, Privacy, Terms } from './pages/GenericPages';
 import { Helmet } from 'react-helmet-async';
 
+import { NewsletterPopup } from './components/ui/NewsletterPopup';
+
 // ScrollToTop Component
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -31,6 +33,7 @@ const AppLayout = () => {
     <div className="flex flex-col min-h-screen">
       <ScrollToTop />
       {!isAuthPage && <Navbar />}
+      {!isAuthPage && <NewsletterPopup />}
       <main className="flex-grow flex flex-col">
         <Routes>
           <Route path="/" element={<Home />} />

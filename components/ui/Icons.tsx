@@ -9,7 +9,7 @@ export function BitintLogo({ size = 28, mono = false, showWordmark = true }: { s
   // 5.svg (Light Full), 6.svg (Dark Full)
   
   const iconSrc = theme === 'dark' ? '/2.svg' : '/1.svg';
-  const fullSrc = theme === 'dark' ? '/6.svg' : '/5.svg';
+  const fullSrc = theme === 'dark' ? '/4.svg' : '/3.svg';
 
   return (
     <div style={{display:'inline-flex', alignItems:'center'}}>

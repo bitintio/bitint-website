@@ -36,20 +36,27 @@ const INDUSTRIES_ITEMS = [
 
 const RESOURCES_ITEMS = [
   { title:'Resources Overview', desc:'Guides, docs, and knowledge base', href:'/resources', icon:'book' },
-  { title:'Glossary', desc:'Blockchain intelligence terminology', href:'/resources/glossary', icon:'book' },
+  { title:'Glossary', desc:'Blockchain intelligence terminology', href:'/resources/glossary', icon:'search' },
   { title:'FAQ', desc:'Common questions answered', href:'/resources/faq', icon:'bell' },
   { title:'Fundamentals', desc:'Deep-dive technical articles', href:'/resources/fundamentals', icon:'folder' },
   { title:'Blog', desc:'Product updates and industry insights', href:'/resources/blog', icon:'clipboard' },
 ];
 
-type MegaKey = 'platform' | 'solutions' | 'industries' | 'resources' | null;
+const COMPANY_ITEMS = [
+  { title:'About Us', desc:'Our mission and principles', href:'/company/about', icon:'users' },
+  { title:'Careers', desc:'Join the intelligence team', href:'/company/careers', icon:'zap' },
+  { title:'Partners', desc:'Technology and investigative network', href:'/company/partners', icon:'plug' },
+  { title:'Contact Us', desc:'Get in touch with our experts', href:'/company/contact', icon:'mail' },
+];
+
+type MegaKey = 'platform' | 'solutions' | 'industries' | 'resources' | 'company' | null;
 
 const NAV_TOP = [
   { key: 'platform' as MegaKey, label: 'Platform', href: '/platform' },
   { key: 'solutions' as MegaKey, label: 'Solutions', href: '/solutions/aml-kyt-compliance' },
   { key: 'industries' as MegaKey, label: 'Industries', href: '/industries/vasps-exchanges' },
   { key: 'resources' as MegaKey, label: 'Resources', href: '/resources' },
-  { key: null as MegaKey, label: 'Company', href: '/about' },
+  { key: 'company' as MegaKey, label: 'Company', href: '/company/about' },
 ];
 
 const MEGA_DATA: Record<string, typeof PLATFORM_ITEMS> = {
@@ -57,6 +64,7 @@ const MEGA_DATA: Record<string, typeof PLATFORM_ITEMS> = {
   solutions: SOLUTIONS_ITEMS,
   industries: INDUSTRIES_ITEMS,
   resources: RESOURCES_ITEMS,
+  company: COMPANY_ITEMS,
 };
 
 function MegaMenuItem({ item, onClose }: { item: typeof PLATFORM_ITEMS[0], onClose: () => void }) {
@@ -109,7 +117,7 @@ export const Navbar: React.FC = () => {
     <nav className="nav">
       <div className="container-wide nav-inner" style={{position:'relative'}}>
         <Link to="/" onClick={close}>
-          <BitintLogo size={30} showWordmark={true} />
+          <BitintLogo size={36} showWordmark={true} />
         </Link>
 
         {/* Desktop nav */}

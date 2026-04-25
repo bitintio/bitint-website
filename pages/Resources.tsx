@@ -4,15 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Icon } from '../components/ui/Icons';
 import { NotFound } from './GenericPages';
 
-// Mock data for resources
-const RESOURCES_DATA = [
-  { id: '1', type: 'blog', title: 'The Evolution of Cross-Chain Obfuscation', desc: 'How illicit actors are using bridges to break traceability, and how we track them.', date: 'Oct 12, 2023', tags: ['Investigations', 'Cross-chain'] },
-  { id: '2', type: 'fundamentals', title: 'What is White-box Risk Scoring?', desc: 'Understanding the difference between opaque risk numbers and defensible intelligence.', date: 'Sep 28, 2023', tags: ['Compliance', 'Methodology'] },
-  { id: '3', type: 'faq', title: 'How does Bitint handle false positives?', desc: 'Our approach to entity resolution and confidence scoring to reduce alert fatigue.', date: 'Sep 15, 2023', tags: ['Product', 'FAQ'] },
-  { id: '4', type: 'glossary', title: 'Peel Chain', desc: 'A technique used to launder cryptocurrency where a large amount is broken down through a series of small transactions.', date: '', tags: ['Glossary'] },
-  { id: '5', type: 'blog', title: 'Sanctions Evasion Tactics in Q3', desc: 'An analysis of recent OFAC designations and the on-chain behavior of sanctioned entities.', date: 'Aug 04, 2023', tags: ['Sanctions', 'Research'] },
-  { id: '6', type: 'fundamentals', title: 'UTXO vs Account-Based Tracing', desc: 'The technical differences between tracing Bitcoin and Ethereum, and why it matters.', date: 'Jul 22, 2023', tags: ['Technical', 'Fundamentals'] },
-];
+import { RESOURCES_DATA } from '../data/expandedResources';
 
 const ResourceCard = ({ item }: { item: any }) => {
   const typeMap: Record<string, {label: string, icon: string}> = {
