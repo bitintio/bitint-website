@@ -46,7 +46,7 @@ const COMPANY_ITEMS = [
   { title:'About Us', desc:'Our mission and principles', href:'/company/about', icon:'users' },
   { title:'Careers', desc:'Join the intelligence team', href:'/company/careers', icon:'zap' },
   { title:'Partners', desc:'Technology and investigative network', href:'/company/partners', icon:'plug' },
-  { title:'Contact Us', desc:'Get in touch with our experts', href:'/company/contact', icon:'mail' },
+  { title:'Contact Us', desc:'Get in touch with our experts', href:'/contact', icon:'mail' },
 ];
 
 type MegaKey = 'platform' | 'solutions' | 'industries' | 'resources' | 'company' | null;

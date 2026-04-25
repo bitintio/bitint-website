@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
     ]},
     { title:'Company', items:[
       ['About Us','/company/about'],['Careers','/company/careers'],
-      ['Partners','/company/partners'],['Contact Us','/company/contact'],
+      ['Partners','/company/partners'],['Contact Us','/contact'],
       ['Privacy Policy','/privacy-policy'],['Terms & Conditions','/terms-and-conditions'],
     ]},
   ];

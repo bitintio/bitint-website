@@ -1,13 +1,29 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Icon } from '../components/ui/Icons';
+
+const CAPABILITIES = [
+  'Wallet Screening', 'Transaction Monitoring', 'Investigation Graph', 
+  'Cross-chain Tracing', 'Entity Intelligence', 'API & Data Layer'
+];
 
 export const Contact = () => {
   const navigate = useNavigate();
   const onNav = (path: string) => navigate(path);
 
-  const [form, setForm] = useState({ name:'', email:'', org:'', role:'Investigator', team:'1–10', msg:'' });
+  const [form, setForm] = useState({ 
+    name:'', email:'', org:'', role:'Investigator', team:'1–10', msg:'', interestedIn: [] as string[]
+  });
   const [sent, setSent] = useState(false);
+
+  const handleCheckbox = (cap: string) => {
+    setForm(prev => ({
+      ...prev,
+      interestedIn: prev.interestedIn.includes(cap)
+        ? prev.interestedIn.filter(c => c !== cap)
+        : [...prev.interestedIn, cap]
+    }));
+  };
 
   return (
     <section className="hero-bg" style={{padding:'72px 0', flex:1}}>
@@ -23,7 +39,7 @@ export const Contact = () => {
             <div style={{display:'grid', gap:16, marginTop:40}}>
               {[
               {i:'mail',  t:'contact@bitint.io',   s:'General inquiries'},
-                {i:'phone', t:'+1 (415) 555-0113', s:'Mon–Fri, 9–5 PT'},
+                {i:'phone', t:'+1 650 422 9155', s:'24/7/365'},
               ].map(row => (
                 <div key={row.t} style={{display:'flex', gap:14, alignItems:'flex-start'}}>
                   <div style={{
@@ -62,7 +78,7 @@ export const Contact = () => {
                 <p className="muted" style={{marginTop:10, fontSize:14.5}}>
                   A Bitint analyst will reach out within one business day — usually sooner.
                 </p>
-                <button className="btn btn-ghost" style={{marginTop:24}} onClick={()=>{ setSent(false); setForm({name:'',email:'',org:'',role:'Investigator',team:'1–10',msg:''}); }}>
+                <button className="btn btn-ghost" style={{marginTop:24}} onClick={()=>{ setSent(false); setForm({name:'',email:'',org:'',role:'Investigator',team:'1–10',msg:'',interestedIn:[]}); }}>
                   Send another
                 </button>
               </div>
@@ -103,16 +119,34 @@ export const Contact = () => {
                       </select>
                     </div>
                   </div>
+                  
+                  <div className="field">
+                    <label style={{marginBottom: 8, display: 'block'}}>Interested in</label>
+                    <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8}}>
+                      {CAPABILITIES.map(cap => (
+                        <label key={cap} style={{display:'flex', alignItems:'center', gap:8, fontSize:13, cursor:'pointer'}}>
+                          <input 
+                            type="checkbox" 
+                            checked={form.interestedIn.includes(cap)}
+                            onChange={() => handleCheckbox(cap)}
+                            style={{accentColor: 'var(--violet-600)', width: 16, height: 16}}
+                          />
+                          {cap}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
                   <div className="field">
                     <label>Tell us about your use case (optional)</label>
-                    <textarea className="textarea" rows={4} value={form.msg} onChange={(e)=>setForm({...form, msg:e.target.value})}
+                    <textarea className="textarea" rows={3} value={form.msg} onChange={(e)=>setForm({...form, msg:e.target.value})}
                               placeholder="Chains you care about, rough address volume, integrations you use today..."/>
                   </div>
                   <button className="btn btn-primary btn-lg" type="submit" style={{marginTop:6, justifyContent:'center'}}>
                     Request demo <Icon name="arrow-right" size={16} stroke={2}/>
                   </button>
                   <p style={{fontSize:11.5, color:'var(--text-subtle)', textAlign:'center'}}>
-                    By submitting, you agree to our privacy policy. We never share your data with third parties.
+                    By submitting, you agree to our <Link to="/privacy-policy" style={{textDecoration:'underline', color:'inherit'}}>privacy policy</Link>. We never share your data with third parties.
                   </p>
                 </div>
               </form>

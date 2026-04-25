@@ -48,11 +48,11 @@ export const Privacy = () => (
           prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:font-semibold
           prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4
           prose-p:text-text-secondary prose-p:leading-relaxed prose-p:mb-6
-          prose-a:text-brand prose-a:no-underline hover:prose-a:underline
+          prose-a:text-[var(--violet-500)] prose-a:no-underline hover:prose-a:underline
           prose-li:text-text-secondary prose-li:my-1
           prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
           prose-strong:text-text-primary marker:text-text-secondary
-          selection:bg-brand/30">
+          selection:bg-[var(--violet-500)]/30">
         <ReactMarkdown rehypePlugins={[rehypeSlug]}>{privacyContent}</ReactMarkdown>
       </div>
     </div>
@@ -72,11 +72,11 @@ export const Terms = () => (
           prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:font-semibold
           prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4
           prose-p:text-text-secondary prose-p:leading-relaxed prose-p:mb-6
-          prose-a:text-brand prose-a:no-underline hover:prose-a:underline
+          prose-a:text-[var(--violet-500)] prose-a:no-underline hover:prose-a:underline
           prose-li:text-text-secondary prose-li:my-1
           prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
           prose-strong:text-text-primary marker:text-text-secondary
-          selection:bg-brand/30">
+          selection:bg-[var(--violet-500)]/30">
         <ReactMarkdown rehypePlugins={[rehypeSlug]}>{termsContent}</ReactMarkdown>
       </div>
     </div>
