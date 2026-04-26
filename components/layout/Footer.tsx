@@ -33,6 +33,31 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="footer">
+      <div className="container-wide" style={{marginBottom: 64}}>
+        <div style={{
+          background: 'var(--gradient-brand-soft)',
+          border: '1px solid rgba(160,43,230,0.18)',
+          borderRadius: 20,
+          padding: '48px 40px',
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 32,
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <div style={{flex: '1 1 300px'}}>
+            <h3 className="text-2xl font-bold font-display mb-2 text-violet-900">Stay ahead with our latest insights</h3>
+            <p className="text-text-secondary" style={{fontSize: 14}}>
+              Unsubscribe at any time. Read our <Link to="/privacy-policy" style={{textDecoration: 'underline'}}>Privacy Policy</Link>.
+            </p>
+          </div>
+          <form style={{display: 'flex', gap: 12, flex: '1 1 300px', maxWidth: 480}} onSubmit={e => e.preventDefault()}>
+            <input type="email" placeholder="Enter your email*" required className="input" style={{flex: 1, background: 'var(--surface)', border: '1px solid var(--border)'}} />
+            <button type="submit" className="btn btn-primary">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
       <div className="container-wide">
         <div style={{display:'grid', gridTemplateColumns:'1.4fr repeat(5, 1fr)', gap:32}} className="max-lg:grid-cols-2 max-sm:grid-cols-1">
           <div>
@@ -44,8 +69,7 @@ export const Footer: React.FC = () => {
                 playsInline
                 style={{display: 'block', height: 48, width: 'auto', objectFit: 'contain'}}
               >
-                <source src="/Bitint_Transparent.mov" type="video/quicktime" />
-                <source src="/Bitint_Transparent.mp4" type="video/mp4" />
+                <source src="/Bitint_animation.mp4" type="video/mp4" />
               </video>
             </Link>
             <p style={{color:'var(--text-muted)', fontSize:14, marginTop:10, maxWidth:280, lineHeight:1.55}}>

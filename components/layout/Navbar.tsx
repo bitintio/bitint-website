@@ -117,7 +117,7 @@ export const Navbar: React.FC = () => {
     <nav className="nav">
       <div className="container-wide nav-inner" style={{position:'relative'}}>
         <Link to="/" onClick={close}>
-          <BitintLogo size={36} showWordmark={true} />
+          <BitintLogo size={48} showWordmark={true} />
         </Link>
 
         {/* Desktop nav */}
