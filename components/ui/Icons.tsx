@@ -31,6 +31,7 @@ export function Icon({ name, size = 18, stroke = 1.6, style, className }: { name
   };
   switch(name) {
     case 'arrow-right': return <svg {...common}><path d="M5 12h14M13 5l7 7-7 7"/></svg>;
+    case 'arrow-up': return <svg {...common}><path d="m18 15-6-6-6 6"/></svg>;
     case 'arrow-up-right': return <svg {...common}><path d="M7 17L17 7M8 7h9v9"/></svg>;
     case 'check': return <svg {...common}><path d="M20 6 9 17l-5-5"/></svg>;
     case 'chevron-down': return <svg {...common}><path d="m6 9 6 6 6-6"/></svg>;

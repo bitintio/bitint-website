@@ -15,6 +15,8 @@ import { Thanks, NotFound, Privacy, Terms } from './pages/GenericPages';
 import { Helmet } from 'react-helmet-async';
 
 import { NewsletterPopup } from './components/ui/NewsletterPopup';
+import { CookieConsent } from './components/ui/CookieConsent';
+import { BackToTop } from './components/ui/BackToTop';
 
 // ScrollToTop Component
 const ScrollToTop = () => {
@@ -34,6 +36,8 @@ const AppLayout = () => {
       <ScrollToTop />
       {!isAuthPage && <Navbar />}
       {!isAuthPage && <NewsletterPopup />}
+      {!isAuthPage && <CookieConsent />}
+      {!isAuthPage && <BackToTop />}
       <main className="flex-grow flex flex-col">
         <Routes>
           <Route path="/" element={<Home />} />
