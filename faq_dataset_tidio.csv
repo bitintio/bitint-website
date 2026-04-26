@@ -1,0 +1,151 @@
+Question,Answer
+What is Bitint?,"Bitint is a blockchain intelligence and crypto compliance platform that helps institutions trace funds, monitor transactions, and produce audit-ready evidence."
+Who uses Bitint?,"Our platform is built for VASPs, exchanges, stablecoin issuers, financial institutions, law enforcement, regulators, and crypto payments teams."
+What makes Bitint different from other tracing tools?,"Bitint focuses on white-box risk scoring and deterministic entity resolution, providing explainable, audit-ready evidence instead of opaque scores."
+How fast is your Transaction Monitoring API?,Our API delivers risk scores and attribution data within 200ms of a transaction being broadcast to the mempool.
+How many blockchains do you support?,"Bitint natively supports over 150 blockchains, including Bitcoin, Ethereum, Tron, BSC, Solana, Polygon, Avalanche, and major Layer 2 networks."
+Do you support cross-chain tracing?,"Yes, Bitint automatically tracks illicit funds as they move across bridges and swap protocols."
+Can Bitint trace funds through decentralized exchanges (DEXs)?,"Yes, our engine parses smart contract events to trace value swapped through automated market makers like Uniswap and Curve."
+How does Bitint handle false positives?,"We use deterministic entity resolution rather than probabilistic guessing, significantly reducing alert fatigue."
+What is White-box Risk Scoring?,"White-box risk scoring exposes the exact cryptographic and heuristic trail used to calculate a risk score, ensuring full explainability."
+Are Bitint's reports court-admissible?,"Yes. We provide complete, mathematically verifiable data provenance that has been used successfully in numerous global jurisdictions."
+Does Bitint monitor indirect exposure?,"Yes, our platform calculates multi-hop exposure, allowing you to set policies based on funds that are multiple hops away from an illicit entity."
+Do you offer an on-premise solution?,"Yes, Bitint offers dedicated private cloud deployments and VPC peering for institutions with strict data residency requirements."
+What is Entity Clustering?,"It is the data science process of identifying multiple pseudonymous addresses and grouping them into a single, cohesive entity."
+What is the difference between UTXO and Account-based tracing?,"Bitcoin uses the UTXO model which allows change-address clustering, whereas Ethereum uses the Account model which relies on behavioral heuristics."
+What is a Peeling Chain?,"A money laundering typology where a large balance is broken down via a series of transactions, peeling off small amounts to obscure the trail."
+How does Bitint help with the Travel Rule?,"Our wallet screening allows teams to perform counterparty due diligence, ensuring Travel Rule data is only shared with compliant, safe VASPs."
+What is an investigation graph?,"A visual tool within Bitint that allows analysts to map transaction flows, group entities, and untangle complex laundering webs."
+How do I book a demo?,You can book a demo by navigating to our Contact Us page and filling out the request form.
+What is your pricing model?,Our pricing is tailored to your organization's volume and specific feature requirements. Contact sales for a custom quote.
+Do you offer Wallet Screening?,"Yes, our wallet screening solution provides real-time risk checks before you authorize withdrawals or accept deposits."
+What is Stablecoin Risk Management?,A specialized solution for stablecoin issuers to monitor secondary market activity and freeze addresses linked to illicit behavior.
+Can law enforcement use Bitint?,"Absolutely. We provide advanced case reporting, audit trails, and PGP-encrypted communication for law enforcement agencies."
+How can I contact support?,"You can reach our team via the live chat, or email us at contact@bitint.io."
+Is Bitint SOC2 compliant?,We are currently in the process of obtaining our SOC2 Type II and ISO 27001 certifications.
+Where can I find your Privacy Policy?,You can find a link to our Privacy Policy in the footer of our website.
+Can I export data from the Investigation Graph?,"Yes, analysts can easily export findings into clean, audit-ready case reports."
+Does Bitint track darknet markets?,"Yes, we maintain an extensive proprietary database of attributions covering darknet markets, ransomware groups, and sanctioned entities."
+What is Entity Intelligence?,"Our continuously updated directory that enriches addresses with real-world identities, risk categories, and operational profiles."
+Do you support API integrations?,"Yes, Bitint offers a robust, RESTful API layer for seamless integration into your existing compliance workflows."
+What is a dusting attack?,Sending tiny amounts of crypto to many addresses to unmask the privacy of the wallet owners.
+What is a VASP?,"Virtual Asset Service Provider, any entity that provides services related to virtual assets like exchanges or custodians."
+What is a Mixer or Tumbler?,A service that obfuscates the origin of cryptocurrency by pooling and scrambling funds from multiple users.
+How does Bitint track mixers?,We employ advanced heuristics to identify mixer deposits and analyze withdrawal patterns to trace obfuscated funds.
+What does OFAC stand for?,"The Office of Foreign Assets Control, a US agency that administers and enforces economic and trade sanctions."
+Can Bitint automatically freeze funds?,"Bitint provides the intelligence and API triggers to your backend, but the actual freezing of funds is executed by the exchange or issuer."
+Who are Bitint's founders?,"Bitint was founded by Gal Hadad (CEO) and Avi Elmaleh, bringing expertise from intelligence and cryptography backgrounds."
+Does Bitint have a careers page?,"Yes, you can view our open positions on the Careers page under the Company menu."
+What is your stance on privacy?,"We trace funds, not people. We adhere to 'Privacy by Design' and only unmask entities when evidence supports it."
+Are you hiring?,"We are always looking for top talent in engineering, compliance, and investigations. Check our Careers page."
+Do you partner with other technology providers?,"Yes, we offer OEM and white-label agreements. See our Partners page for more details."
+What is Chain Hopping?,A laundering technique involving the rapid transfer of assets across different blockchains to obscure the trail.
+How do you detect Chain Hopping?,Our cross-chain tracing engine automatically links deposits and withdrawals across major bridges and DEXs.
+What is AML?,Anti-Money Laundering refers to regulations intended to prevent criminals from disguising illegally obtained funds.
+What is KYT?,Know Your Transaction is the process of monitoring cryptocurrency transactions for risk and compliance purposes.
+Does Bitint offer KYT?,"Yes, our Transaction Monitoring solution is a comprehensive KYT engine."
+What is a Smart Contract?,Self-executing code deployed on a blockchain that automatically enforces the terms of an agreement.
+Does Bitint monitor DeFi protocols?,"Yes, we continuously map and monitor decentralized finance protocols, including lending platforms and DEXs."
+Can I integrate Bitint into my existing case management tool?,"Yes, our API and Data Layer allow you to pipe our intelligence directly into your internal tooling."
+How frequently is your attribution data updated?,Our data layer is updated in real-time as our algorithms and intelligence analysts identify new entities and risks.
+Is your system scalable for high-volume exchanges?,"Absolutely, our infrastructure is built to handle thousands of transactions per second with sub-second latency."
+What is an Investigator role in Bitint?,"Investigators use Bitint to trace funds, construct visual graphs, and generate court-admissible evidence reports."
+What is a Compliance role in Bitint?,"Compliance teams use our platform to monitor transactions, manage alerts, and automatically screen wallets against sanctions lists."
+Can Bitint handle Layer 2 blockchains?,"Yes, we fully support major Layer 2 networks like Arbitrum, Optimism, Base, and Polygon."
+How do you handle Pig Butchering scams?,Our analysts track large consolidation wallets and exit nodes frequently used by pig butchering syndicates to help victims and law enforcement recover funds.
+Does Bitint provide a visual graph?,"Yes, our Investigation Graph provides an interactive visual interface to easily map out transaction flows across multiple hops."
+Are there different pricing tiers?,"Yes, we offer multiple pricing tiers based on transaction volume, API usage, and the number of analyst seats required."
+What is a Change Address?,"In a UTXO model like Bitcoin, a change address is a new address generated to receive the remaining funds from a transaction."
+What does SAR stand for?,"Suspicious Activity Report, a document financial institutions file with FinCEN following suspected money laundering or fraud."
+How do I report a vulnerability?,Security researchers can report vulnerabilities by emailing contact@bitint.io.
+Where is Bitint located?,We are a globally distributed team with our core operations supporting clients worldwide.
+Does Bitint integrate with Chainalysis?,"Bitint is a standalone, advanced alternative to legacy tools like Chainalysis, focusing on transparent white-box risk scoring."
+What is your data retention policy?,"Our data retention policies comply with global GDPR and CCPA standards, ensuring sensitive investigation data is handled securely."
+What happens if an address is flagged?,"If an address is flagged, the compliance team receives a real-time alert via webhooks and the UI, detailing the exact risk factors and exposure hops."
+Can I upload custom watchlists?,"Yes, enterprise users can upload and manage custom internal watchlists alongside our global sanctions and threat intelligence databases."
+What is a Darknet Market (DNM)?,"Commercial websites operating on dark web networks frequently used for illicit goods, primarily transacting in cryptocurrency."
+How do you identify DNM addresses?,"We use proprietary data collection, active engagement, and clustering heuristics to map out darknet market deposit and withdrawal infrastructure."
+Is Bitint GDPR compliant?,"Yes, Bitint fully complies with GDPR regulations and employs privacy-by-design principles throughout our architecture."
+What is Wash Trading?,A form of market manipulation where an entity simultaneously sells and buys the same assets to create false activity.
+Do you monitor NFTs?,"Our primary focus is on fungible tokens, stablecoins, and core native assets, but we track the flow of value through major NFT marketplaces."
+Can I try Bitint for free?,"We do not offer a self-serve free trial, but you can request a live, guided demo using your own addresses."
+How do I subscribe to the newsletter?,You can subscribe to our weekly insights via the newsletter popup on our website or the footer section.
+What is an Exit Node?,The final destination where illicit cryptocurrency is consolidated before being cashed out to fiat currency.
+What happens if a stablecoin is used in a crime?,Stablecoin issuers can use Bitint's Risk Management suite to identify the illicit activity and trigger a freeze on the associated addresses.
+How do you trace across bridges?,"Bitint uses cross-chain heuristics to match deposit and withdrawal volumes, timing, and signatures across disparate blockchain protocols."
+What are Heuristics?,Rules or algorithms used in blockchain analysis to make educated assumptions about address ownership or transaction patterns.
+Can I export data to Excel?,"Yes, all transaction logs, risk scores, and entity attributions can be exported to CSV or Excel formats."
+Do you offer white-label reporting?,"Yes, Enterprise tier customers can generate white-labeled PDF reports branded with their organization's logo."
+Is Bitint available 24/7?,"Yes, our API infrastructure and platform are available 24/7/365 with a 99.9% uptime SLA."
+What is KYC?,Know Your Customer is the mandatory process of identifying and verifying a client's identity when opening an account.
+Does Bitint perform KYC?,"No, Bitint performs KYT (Know Your Transaction) and wallet screening. We integrate alongside your existing KYC provider."
+What is the Mempool?,The waiting area for transactions that have been broadcast to the network but not yet confirmed in a block.
+Does Bitint score unconfirmed transactions?,"Yes, our engine analyzes transactions while they are still in the mempool to provide risk scores before confirmation."
+Can I share cases with my team?,"Yes, Bitint supports multi-user collaborative workspaces with role-based access control (RBAC)."
+What is a Co-spending Heuristic?,A heuristic used on UTXO blockchains that assumes all inputs funding a single payment are controlled by the same entity.
+How do I upgrade my plan?,You can contact your dedicated account manager or email our sales team to upgrade your subscription tier.
+Do you trace Monero?,"Currently, Bitint focuses on transparent and pseudonymous ledgers. Privacy coins like Monero require specialized off-chain operational security analysis."
+What is your SLA?,We offer a 99.9% uptime Service Level Agreement for our Enterprise API customers.
+Can Bitint detect ransomware payments?,"Yes, our intelligence database continuously updates with the latest ransomware group wallet addresses and extortion infrastructure."
+Do you offer training for investigators?,"Yes, we provide comprehensive onboarding and advanced blockchain forensics training for our clients."
+What is a false positive?,An alert that incorrectly flags a legitimate transaction or address as risky or illicit.
+How do you reduce false positives?,By relying on deterministic clustering and transparent white-box scoring rather than broad probabilistic assumptions.
+Can I automate alert management?,"Yes, our API allows you to set custom webhooks to automatically trigger or resolve alerts in your internal systems."
+What is an attribution?,"The process of linking a pseudonymous blockchain address to a real-world entity, service, or individual."
+How do you handle data privacy?,"We trace funds, not people. We do not require or store your customers' PII (Personally Identifiable Information) to perform risk scoring."
+What is the Bitint Data Layer?,"Our proprietary, structured dataset of blockchain intelligence that can be accessed directly via API or bulk data feeds."
+Can regulators use Bitint?,"Yes, regulatory and supervisory bodies use Bitint to monitor systemic risk and oversee VASP compliance at a macro level."
+Do you trace smart contract hacks?,"Yes, our platform is actively used to trace the flow of funds following DeFi exploits, flash loan attacks, and smart contract vulnerabilities."
+Is there a limit on API requests?,"API rate limits depend on your pricing tier. High-volume enterprise clients receive dedicated, scalable throughput."
+What does it mean to trace funds?,Tracing funds involves following the movement of cryptocurrency from one address to another through the public blockchain ledger.
+Who should I contact for a partnership?,You can visit our Partners page or email contact@bitint.io to discuss technology or investigative partnerships.
+Do you have an affiliate program?,We offer a referral partner program for consultants and technology integrators. Contact our partnerships team.
+What happens to my data if I cancel?,"Upon cancellation, client data is securely purged in accordance with our data destruction protocols and GDPR requirements."
+Do you trace stablecoins like USDT and USDC?,"Yes, Bitint fully supports tracing and risk scoring for all major fiat-backed and algorithmic stablecoins across multiple chains."
+What is an illicit entity?,"Any address or cluster associated with illegal activities, such as ransomware, terrorism financing, child exploitation, or darknet markets."
+How do you handle Tornado Cash?,Our heuristics and clustering algorithms are designed to track deposits and evaluate the risk of withdrawals from mixing services like Tornado Cash.
+What is your uptime guarantee?,"We guarantee a 99.9% uptime for our Enterprise APIs, backed by service credits."
+Can I integrate Bitint with Salesforce?,"Yes, our REST API allows seamless integration with major CRMs and case management platforms like Salesforce."
+Do you monitor TRON?,"Yes, TRON and TRC-20 tokens (especially USDT) are fully supported and monitored in real-time."
+What is a Hop?,A hop refers to a single transaction step between addresses. Risk can be calculated based on how many hops away an address is from illicit activity.
+Does Bitint provide PII?,"No, we trace on-chain data and attribute it to services (like an exchange), but we do not store the personal names of individual retail users."
+Can I use Bitint on my mobile device?,"Our web application is mobile-responsive, allowing you to review alerts and reports on the go, though graphing is best experienced on a desktop."
+What is a Blockchain Explorer?,"A tool used to view public blockchain data. Bitint serves as an advanced, intelligence-enriched blockchain explorer."
+Does Bitint support custom risk scoring?,"Yes, administrators can configure custom risk thresholds, weights, and rulesets tailored to their organization's specific risk appetite."
+What is a Sanctioned Address?,A cryptocurrency address explicitly listed by regulatory bodies like OFAC as belonging to a sanctioned individual or nation-state.
+How fast are your OFAC updates?,"Our database ingests OFAC SDN updates continuously, reflecting new sanctions within minutes of their publication."
+Can I cancel my subscription at any time?,Subscriptions are typically based on annual contracts. Contact your account executive for specific cancellation terms.
+What is a Cold Wallet?,"A cryptocurrency wallet that is not connected to the internet, often used by exchanges to store the majority of their funds securely."
+Do you track cold wallet movements?,"Yes, our clustering algorithms identify both hot and cold wallets belonging to a VASP, providing a complete picture of their liquidity."
+What is a Hot Wallet?,"A wallet connected to the internet, used for day-to-day transactions and automated withdrawals by services."
+Is your documentation available publicly?,"High-level API documentation is available upon request, while detailed endpoints and integration guides are provided during onboarding."
+Do you offer proof of concepts (PoCs)?,"Yes, we offer structured PoCs for qualified enterprise clients to evaluate our data accuracy against their existing solutions."
+What is a Flash Loan Attack?,"A DeFi exploit where an attacker borrows a massive amount of crypto without collateral, manipulates a market, repays the loan, and profits from the discrepancy all within a single transaction."
+Can Bitint trace stolen funds from hacks?,"Yes, investigators use Bitint to track the movement of stolen funds through hops, bridges, and mixers to identify cash-out points."
+Do you cover the Binance Smart Chain (BSC)?,"Yes, BSC and BEP-20 tokens are natively supported on the Bitint platform."
+What is a Governance Token?,A token that grants its holder voting rights on the development and direction of a blockchain protocol or DAO.
+How do you classify high-risk jurisdictions?,"We factor in FATF greylists and blacklists, as well as OFAC comprehensive sanctions, into our geographic risk scoring models."
+Do you have a bug bounty program?,"We run private bug bounty programs. If you are a security researcher, please contact us for an invite."
+Can I add notes to a transaction?,"Yes, analysts can append notes, tags, and internal IDs to specific transactions or entities within their workspace."
+What is a DAO?,Decentralized Autonomous Organization; an entity represented by rules encoded as a computer program that is transparent and controlled by organization members.
+What languages does your support team speak?,"Our primary support is in English, with additional support available in select regions depending on enterprise SLA terms."
+How do I invite a team member?,Administrators can invite new users via the 'Settings' panel under 'User Management'.
+What is a DEX?,"A Decentralized Exchange, a peer-to-peer marketplace where transactions occur directly between crypto traders without an intermediary."
+Can I set up email alerts?,"Yes, you can configure alert notifications to be sent via email, webhooks, or Slack/Teams integrations."
+What is an unhosted wallet?,A cryptocurrency wallet managed directly by the user rather than hosted by a third-party service like an exchange.
+How does Bitint score unhosted wallets?,"Unhosted wallets are scored based on their on-chain behavior, transaction history, and proximity to known illicit entities."
+What is the difference between direct and indirect risk?,Direct risk implies a 1-hop transaction with a bad actor. Indirect risk means the funds have passed through intermediaries before reaching the user.
+Do you trace the Lightning Network?,Layer 2 solutions like Lightning present unique tracing challenges; we utilize off-chain data and channel opening/closing heuristics to map exposure where possible.
+Can I see the exact path of funds?,"Yes, the Investigation Graph visualizes the exact chronological path funds took from an origin to a destination."
+What is a heuristic clustering algorithm?,An algorithm that groups multiple addresses together under the assumption they belong to the same entity based on specific on-chain behaviors.
+Are your risk scores deterministic?,"We emphasize deterministic rules (e.g., cryptographic proof of control) over probabilistic guesses to ensure high fidelity and low false positives."
+Can I generate a report for a subpoena?,"Yes, law enforcement and compliance teams can generate comprehensive, tamper-evident PDF reports for legal proceedings."
+What is a Sybil Attack?,A security threat where one entity creates multiple fake identities or nodes to gain disproportionate influence over a network.
+Do you monitor Solana?,"Yes, we fully support tracing and monitoring on the Solana blockchain."
+How do I change my password?,You can change your password in the 'Account Settings' page or use the 'Forgot Password' link on the login screen.
+What is a Phishing Scam?,A fraudulent attempt to obtain sensitive information or crypto assets by disguising oneself as a trustworthy entity.
+Does Bitint flag phishing addresses?,"Yes, addresses identified as belonging to phishing campaigns are flagged as High Risk in our database."
+Do you offer a self-hosted option?,"Yes, we offer on-premise and VPC peering deployments for enterprise clients who require total data isolation."
+What is a Smart Contract Audit?,"A security review of smart contract code to identify vulnerabilities. While we don't perform audits, we monitor the protocols post-deployment."
+How long does onboarding take?,"Standard API integrations can be completed in days, while complex enterprise setups and training may take a few weeks."
+Who owns Bitint?,"Bitint is a privately held company. For investor relations or media inquiries, please contact our PR team."
