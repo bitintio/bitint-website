@@ -191,16 +191,7 @@ export const Home: React.FC = () => {
                   See the platform
                 </button>
               </div>
-              <div style={{
-                display:'flex', alignItems:'center', gap:30, marginTop:40,
-                paddingTop:26, borderTop:'1px solid var(--border)',
-                fontSize:12.5, color:'var(--text-muted)', flexWrap:'wrap',
-              }}>
-                <span>Trusted by</span>
-                {['INTERPOL*', 'FINCEN*', 'Binance*', 'Chainlink', 'Kraken*'].map(l => (
-                  <span key={l} style={{fontFamily:'var(--font-display)', fontWeight:600, fontSize:16, letterSpacing:'-0.02em', opacity:0.7}}>{l}</span>
-                ))}
-              </div>
+
             </div>
             <div style={{position:'relative'}}>
               <AppChrome title="app.bitint.io/investigation" height={520}>

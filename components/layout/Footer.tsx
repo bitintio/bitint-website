@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
     { title:'Platform', items:[
       ['Overview','/platform'],['Wallet Screening','/platform/wallet-screening'],
       ['Transaction Monitoring','/platform/transaction-monitoring'],['Investigation Graph','/platform/investigation-graph'],
-      ['Cross-chain Tracing','/platform/cross-chain-tracing'],['White-box Risk Scoring','/platform/white-box-risk-scoring'],
+      ['Cross-chain Tracing','/platform/cross-chain-tracing'],['Explainable Risk Scoring','/platform/explainable-risk-scoring'],
       ['API & Data Layer','/platform/api'],
     ]},
     { title:'Solutions', items:[
@@ -29,7 +29,6 @@ export const Footer: React.FC = () => {
     { title:'Company', items:[
       ['About Us','/company/about'],['Careers','/company/careers'],
       ['Partners','/company/partners'],['Contact Us','/contact'],
-      ['Privacy Policy','/privacy-policy'],['Terms & Conditions','/terms-and-conditions'],
     ]},
   ];
 
@@ -110,8 +109,7 @@ export const Footer: React.FC = () => {
             <Link to="/terms-and-conditions" style={{transition:'color .15s ease'}} onMouseEnter={(e)=>e.currentTarget.style.color='var(--text)'} onMouseLeave={(e)=>e.currentTarget.style.color='var(--text-subtle)'}>Terms & Conditions</Link>
           </div>
           <div style={{display:'flex', gap:20}}>
-            <span>SOC 2 Type II</span>
-            <span>ISO 27001</span>
+            <span>SOC 2 In Progress</span>
             <span>GDPR</span>
           </div>
         </div>

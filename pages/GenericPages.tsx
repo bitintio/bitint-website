@@ -25,12 +25,24 @@ export const Thanks = () => (
   </div>
 );
 
-export const NotFound = () => (
-  <div className="min-h-[60vh] flex items-center justify-center bg-background">
-    <div className="text-center">
-      <h1 className="text-9xl font-display font-bold text-surface-light">404</h1>
-      <p className="text-xl text-text-secondary mb-8">Page not found.</p>
-      <Link to="/" className="btn btn-primary">Return Home</Link>
+export const NotFound = ({ isSearch = false, query = '' }: { isSearch?: boolean, query?: string }) => (
+  <div className="min-h-[70vh] flex items-center justify-center bg-background" style={{padding: '40px 20px'}}>
+    <div className="text-center max-w-lg w-full">
+      <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center" style={{background: 'var(--surface-2)', color: 'var(--text-muted)'}}>
+        <Icon name="search" size={36} stroke={1.5} />
+      </div>
+      <h1 className="display-2 font-display font-bold mb-4">
+        {isSearch ? "No results found" : "Page not found"}
+      </h1>
+      <p className="text-lg text-text-secondary mb-10" style={{lineHeight: 1.6}}>
+        {isSearch 
+          ? `We couldn't find anything matching "${query}". Try adjusting your search terms or explore our resources.`
+          : "The page you're looking for doesn't exist or has been moved."}
+      </p>
+      <div className="flex justify-center gap-4 flex-wrap">
+        <Link to="/" className="btn btn-primary btn-lg">Return to Homepage</Link>
+        <Link to="/contact" className="btn btn-ghost btn-lg">Contact Support</Link>
+      </div>
     </div>
   </div>
 );

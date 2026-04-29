@@ -6,7 +6,7 @@ export const RESOURCES_DATA = [
   { id: 'b4', type: 'blog', title: 'The State of Mixer Usage in 2024', desc: 'Volume shifts and alternative privacy preservation methods observed on-chain.', date: 'Jan 15, 2024', tags: ['Privacy', 'Research'] },
 
   // FUNDAMENTALS
-  { id: 'f1', type: 'fundamentals', slug: 'white-box-risk-scoring', title: 'What is White-box Risk Scoring?', desc: 'Understanding the difference between opaque risk numbers and defensible intelligence.', date: '', tags: ['Compliance', 'Methodology'],
+  { id: 'f1', type: 'fundamentals', slug: 'explainable-risk-scoring', title: 'What is Explainable Risk Scoring?', desc: 'Understanding the difference between opaque risk numbers and defensible intelligence.', date: '', tags: ['Compliance', 'Methodology'],
     content: `In the early days of blockchain intelligence, risk scoring was largely a black-box exercise. Compliance teams would input an address into a platform and receive a seemingly arbitrary score—often a red/yellow/green indicator or a number from 1 to 100. While this allowed for rapid, automated screening, it failed a critical requirement of modern financial compliance: **explainability**.
 
 ## The Problem with Black-Box Intelligence
@@ -16,15 +16,15 @@ This creates significant friction:
 *   **False Positives:** Without knowing how a score is derived, teams cannot tune their policies or confidently clear false alarms.
 *   **Regulatory Defensibility:** Institutions are ultimately responsible for their compliance decisions. Relying on an opaque third-party score introduces unacceptable regulatory risk.
 
-## Enter White-Box Risk Scoring
-White-box risk scoring flips this paradigm. A white-box system doesn't just deliver a score; it provides the entire cryptographic and heuristic trail used to calculate it. 
+## Enter Explainable Risk Scoring
+Explainable risk scoring flips this paradigm. A transparent system doesn't just deliver a score; it provides the entire cryptographic and heuristic trail used to calculate it. Our platform offers full-spectrum visibility into the transaction flow. You get the raw data alongside the analysis, ensuring no 'black-box' gaps in your investigation.
 
-Bitint's architecture is fundamentally white-box. When an address is flagged for interacting with a sanctioned entity, the platform exposes the exact transactional graph:
+Bitint's architecture is fundamentally built on Verifiable Logic and Evidence-Based Intelligence. When an address is flagged for interacting with a sanctioned entity, the platform exposes the exact transactional graph via High-Resolution Traceability and Granular Reconstruction:
 1.  The specific hops (distance) between the queried address and the illicit entity.
 2.  The exact volume of funds transferred.
 3.  The specific clustering heuristics applied to attribute the illicit address.
 
-By exposing the underlying logic, compliance teams can move from reactive box-checking to proactive risk management, generating truly defensible, audit-ready evidence trails.`
+By exposing the underlying logic, compliance teams can move from reactive box-checking to proactive risk management, generating truly defensible, Courtroom-Ready Attribution and audit-ready evidence trails.`
   },
   { id: 'f2', type: 'fundamentals', slug: 'utxo-vs-account-based', title: 'UTXO vs Account-Based Tracing', desc: 'The technical differences between tracing Bitcoin (UTXO model) and Ethereum (Account model), and why it matters for evidence building.', date: '', tags: ['Technical', 'Fundamentals'],
     content: `When conducting blockchain forensics, investigators must understand the underlying accounting model of the network they are analyzing. The two primary architectures are the **UTXO (Unspent Transaction Output) model**, popularized by Bitcoin, and the **Account-based model**, utilized by Ethereum and most smart contract platforms.

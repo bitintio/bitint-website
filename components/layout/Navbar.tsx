@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../ThemeContext';
 import { BitintLogo, Icon } from '../ui/Icons';
 
@@ -10,7 +10,7 @@ const PLATFORM_ITEMS = [
   { title:'Investigation Graph', desc:'Graph-first case workflows', href:'/platform/investigation-graph', icon:'eye' },
   { title:'Cross-chain Tracing', desc:'Follow funds across 150+ chains', href:'/platform/cross-chain-tracing', icon:'globe' },
   { title:'Entity Intelligence', desc:'Sourced, scored attribution data', href:'/platform/entity-intelligence', icon:'users' },
-  { title:'White-box Risk Scoring', desc:'Explainable, auditable risk models', href:'/platform/white-box-risk-scoring', icon:'clipboard' },
+  { title:'Explainable Risk Scoring', desc:'Auditable, transparent risk models', href:'/platform/explainable-risk-scoring', icon:'clipboard' },
   { title:'API & Data Layer', desc:'REST, streams, SDKs', href:'/platform/api', icon:'plug' },
 ];
 
@@ -101,6 +101,25 @@ export const Navbar: React.FC = () => {
   const [open, setOpen] = useState<MegaKey>(null);
   const closeTimer = useRef<any>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const [searchExpanded, setSearchExpanded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (searchExpanded && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [searchExpanded]);
+
+  const handleSearchSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      navigate('/search?q=' + encodeURIComponent(searchQuery.trim()));
+      setSearchExpanded(false);
+      setSearchQuery('');
+    }
+  };
 
   const hover = (k: MegaKey) => {
     clearTimeout(closeTimer.current);
@@ -168,15 +187,15 @@ export const Navbar: React.FC = () => {
               <div>
                 <div className="eyebrow" style={{background:'rgba(255,255,255,0.6)'}}>New</div>
                 <div style={{fontFamily:'var(--font-display)', fontSize:20, fontWeight:600, marginTop:12, letterSpacing:'-0.02em', lineHeight:1.15}}>
-                  White-box Risk Scoring: explainable, auditable, defensible
+                  Explainable Risk Scoring: auditable, defensible logic
                 </div>
                 <p style={{color:'var(--text-muted)', fontSize:13, marginTop:8, lineHeight:1.5}}>
                   Every risk score ships with full attribution provenance, evidence trail, and analyst-readable rationale.
                 </p>
               </div>
-              <Link to="/platform/white-box-risk-scoring" onClick={close}
+              <Link to="/platform/explainable-risk-scoring" onClick={close}
                  style={{color:'var(--violet-700)', fontWeight:600, fontSize:13, display:'inline-flex', alignItems:'center', gap:6, marginTop:16}}>
-                See White-box Risk Scoring <Icon name="arrow-up-right" size={14}/>
+                See Explainable Risk Scoring <Icon name="arrow-up-right" size={14}/>
               </Link>
             </div>
           </div>
@@ -184,6 +203,61 @@ export const Navbar: React.FC = () => {
 
         {/* Right side */}
         <div style={{display:'flex', alignItems:'center', gap:10}}>
+          {/* Search */}
+          <div className="max-md:hidden" style={{position:'relative', display:'flex', alignItems:'center', marginRight: 4}}>
+            <div 
+              style={{
+                display: 'flex', alignItems: 'center',
+                background: searchExpanded ? 'var(--surface)' : 'transparent',
+                border: `1px solid ${searchExpanded ? 'var(--violet-500)' : 'transparent'}`,
+                borderRadius: 999,
+                padding: searchExpanded ? '4px 12px 4px 10px' : '6px',
+                width: searchExpanded ? 220 : 32,
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: searchExpanded ? '0 0 0 3px rgba(160,43,230,0.1)' : 'none',
+              }}
+            >
+              <button 
+                onClick={() => setSearchExpanded(true)}
+                style={{
+                  color: searchExpanded ? 'var(--violet-500)' : 'var(--text-muted)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  transition: 'color 0.2s',
+                  padding: 0, margin: 0, border: 'none', background: 'transparent',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => { if(!searchExpanded) e.currentTarget.style.color = 'var(--text)' }}
+                onMouseLeave={(e) => { if(!searchExpanded) e.currentTarget.style.color = 'var(--text-muted)' }}
+              >
+                <Icon name="search" size={16} />
+              </button>
+              
+              <input 
+                ref={searchInputRef}
+                type="text" 
+                placeholder="Search Bitint..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearchSubmit}
+                onBlur={() => {
+                  if (!searchQuery) setSearchExpanded(false);
+                }}
+                style={{
+                  width: searchExpanded ? '100%' : 0,
+                  opacity: searchExpanded ? 1 : 0,
+                  marginLeft: searchExpanded ? 8 : 0,
+                  border: 'none',
+                  background: 'transparent',
+                  color: 'var(--text)',
+                  fontSize: 13,
+                  outline: 'none',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  padding: 0
+                }}
+              />
+            </div>
+          </div>
+
           <button className="nav-link" onClick={toggleTheme} aria-label="Toggle theme" title="Toggle theme">
             <Icon name={theme==='dark' ? 'sun' : 'moon'} size={16}/>
           </button>

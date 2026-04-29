@@ -12,6 +12,7 @@ import { Contact } from './pages/Contact';
 import { Login } from './pages/Login';
 import { ResourcesRoutes } from './pages/Resources';
 import { Thanks, NotFound, Privacy, Terms } from './pages/GenericPages';
+import { Search } from './pages/Search';
 import { Helmet } from 'react-helmet-async';
 
 import { NewsletterPopup } from './components/ui/NewsletterPopup';
@@ -74,6 +75,9 @@ const AppLayout = () => {
           {/* Legacy Conversion */}
           <Route path="/thanks" element={<Thanks />} />
 
+          {/* Search */}
+          <Route path="/search" element={<Search />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
@@ -88,7 +92,7 @@ const App = () => {
       <Router>
         <Helmet>
           <title>Bitint | Blockchain Intelligence Platform</title>
-          <meta name="description" content="Blockchain intelligence for investigations, compliance, and risk management. White-box risk scoring, cross-chain tracing, and audit-ready evidence trails." />
+          <meta name="description" content="Blockchain intelligence for investigations, compliance, and risk management. Explainable Risk Scoring, cross-chain tracing, and audit-ready evidence trails." />
         </Helmet>
             <AppLayout />
       </Router>

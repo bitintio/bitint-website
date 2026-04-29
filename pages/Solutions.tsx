@@ -67,7 +67,7 @@ const SolutionsOverview = () => {
 const AMLCompliance = () => (
   <SubPage
     seo={{title:'AML / KYT Compliance', desc:'Automate Travel Rule, SAR workflows, and ongoing KYT with explainable blockchain intelligence.'}}
-    hero={{eyebrow:'AML / KYT Compliance', title:'Compliance that explains itself.', subtitle:'Automate Travel Rule workflows, SAR filing, and ongoing transaction monitoring with white-box risk data that regulators can audit and analysts can trust.'}}
+    hero={{eyebrow:'AML / KYT Compliance', title:'Compliance that explains itself.', subtitle:'Automate Travel Rule workflows, SAR filing, and ongoing transaction monitoring with Explainable Risk Scoring that regulators can audit and analysts can trust.'}}
     sections={[
       {title:'The operational problem', content: <p className="muted" style={{fontSize:16, lineHeight:1.65, maxWidth:720}}>Most compliance tools give you a risk score and expect you to trust it. When regulators ask "why did you approve this transaction?" you need more than a number — you need the reasoning, the data sources, and the evidence trail. Bitint provides all three by default.</p>},
       {title:'How Bitint solves it', content: <WorkflowSteps steps={[

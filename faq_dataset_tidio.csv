@@ -1,13 +1,13 @@
 Question,Answer
 What is Bitint?,"Bitint is a blockchain intelligence and crypto compliance platform that helps institutions trace funds, monitor transactions, and produce audit-ready evidence."
 Who uses Bitint?,"Our platform is built for VASPs, exchanges, stablecoin issuers, financial institutions, law enforcement, regulators, and crypto payments teams."
-What makes Bitint different from other tracing tools?,"Bitint focuses on white-box risk scoring and deterministic entity resolution, providing explainable, audit-ready evidence instead of opaque scores."
+What makes Bitint different from other tracing tools?,"Bitint focuses on Explainable Risk Scoring and deterministic entity resolution, providing transparent, audit-ready evidence instead of opaque scores."
 How fast is your Transaction Monitoring API?,Our API delivers risk scores and attribution data within 200ms of a transaction being broadcast to the mempool.
 How many blockchains do you support?,"Bitint natively supports over 150 blockchains, including Bitcoin, Ethereum, Tron, BSC, Solana, Polygon, Avalanche, and major Layer 2 networks."
 Do you support cross-chain tracing?,"Yes, Bitint automatically tracks illicit funds as they move across bridges and swap protocols."
 Can Bitint trace funds through decentralized exchanges (DEXs)?,"Yes, our engine parses smart contract events to trace value swapped through automated market makers like Uniswap and Curve."
 How does Bitint handle false positives?,"We use deterministic entity resolution rather than probabilistic guessing, significantly reducing alert fatigue."
-What is White-box Risk Scoring?,"White-box risk scoring exposes the exact cryptographic and heuristic trail used to calculate a risk score, ensuring full explainability."
+What is Explainable Risk Scoring?,"Explainable risk scoring exposes the exact cryptographic and heuristic trail used to calculate a risk score, ensuring full transparency and verifiable logic."
 Are Bitint's reports court-admissible?,"Yes. We provide complete, mathematically verifiable data provenance that has been used successfully in numerous global jurisdictions."
 Does Bitint monitor indirect exposure?,"Yes, our platform calculates multi-hop exposure, allowing you to set policies based on funds that are multiple hops away from an illicit entity."
 Do you offer an on-premise solution?,"Yes, Bitint offers dedicated private cloud deployments and VPC peering for institutions with strict data residency requirements."
@@ -59,7 +59,7 @@ What is a Change Address?,"In a UTXO model like Bitcoin, a change address is a n
 What does SAR stand for?,"Suspicious Activity Report, a document financial institutions file with FinCEN following suspected money laundering or fraud."
 How do I report a vulnerability?,Security researchers can report vulnerabilities by emailing contact@bitint.io.
 Where is Bitint located?,We are a globally distributed team with our core operations supporting clients worldwide.
-Does Bitint integrate with Chainalysis?,"Bitint is a standalone, advanced alternative to legacy tools like Chainalysis, focusing on transparent white-box risk scoring."
+Does Bitint integrate with Chainalysis?,"Bitint is a standalone, advanced alternative to legacy tools like Chainalysis, focusing on transparent, Explainable Risk Scoring."
 What is your data retention policy?,"Our data retention policies comply with global GDPR and CCPA standards, ensuring sensitive investigation data is handled securely."
 What happens if an address is flagged?,"If an address is flagged, the compliance team receives a real-time alert via webhooks and the UI, detailing the exact risk factors and exposure hops."
 Can I upload custom watchlists?,"Yes, enterprise users can upload and manage custom internal watchlists alongside our global sanctions and threat intelligence databases."
@@ -89,7 +89,7 @@ What is your SLA?,We offer a 99.9% uptime Service Level Agreement for our Enterp
 Can Bitint detect ransomware payments?,"Yes, our intelligence database continuously updates with the latest ransomware group wallet addresses and extortion infrastructure."
 Do you offer training for investigators?,"Yes, we provide comprehensive onboarding and advanced blockchain forensics training for our clients."
 What is a false positive?,An alert that incorrectly flags a legitimate transaction or address as risky or illicit.
-How do you reduce false positives?,By relying on deterministic clustering and transparent white-box scoring rather than broad probabilistic assumptions.
+How do you reduce false positives?,By relying on deterministic clustering and transparent Explainable Risk Scoring rather than broad probabilistic assumptions.
 Can I automate alert management?,"Yes, our API allows you to set custom webhooks to automatically trigger or resolve alerts in your internal systems."
 What is an attribution?,"The process of linking a pseudonymous blockchain address to a real-world entity, service, or individual."
 How do you handle data privacy?,"We trace funds, not people. We do not require or store your customers' PII (Personally Identifiable Information) to perform risk scoring."

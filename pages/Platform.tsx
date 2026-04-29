@@ -231,7 +231,7 @@ const WalletScreening = () => (
         {step:'3', title:'Receive a scored result', desc:'A 0–100 risk score with full breakdown: which signals fired, confidence levels, and source references.'},
         {step:'4', title:'Act on the result', desc:'Approve, escalate, or block — with a full audit trail for every decision.'},
       ]}/> },
-      {title:'Why it matters', content: <p className="muted" style={{fontSize:16, lineHeight:1.65, maxWidth:720}}>Regulators expect you to explain your risk decisions. Bitint's white-box scoring gives compliance teams the evidence they need — not just a number, but the reasoning behind it. Every screening result includes attribution sources, confidence scores, and a clear evidence trail.</p>},
+      {title:'Why it matters', content: <p className="muted" style={{fontSize:16, lineHeight:1.65, maxWidth:720}}>Regulators expect you to explain your risk decisions. Bitint's Explainable Risk Scoring gives compliance teams the evidence they need — not just a number, but the reasoning behind it. Every screening result includes attribution sources, confidence scores, and a clear, auditable evidence trail.</p>},
     ]}
     relatedSolutions={[{label:'AML / KYT Compliance', href:'/solutions/aml-kyt-compliance'},{label:'Sanctions Screening', href:'/solutions/sanctions-screening'}]}
     relatedIndustries={[{label:'VASPs & Exchanges', href:'/industries/vasps-exchanges'},{label:'Financial Institutions', href:'/industries/financial-institutions-fintechs'}]}
@@ -303,10 +303,10 @@ const EntityIntelligence = () => (
   />
 );
 
-const WhiteBoxRiskScoring = () => (
+const ExplainableRiskScoring = () => (
   <SubPage
-    seo={{title:'White-box Risk Scoring', desc:'Explainable, auditable risk scoring with full attribution provenance.'}}
-    hero={{eyebrow:'White-box Risk Scoring', title:'Every score has a reason. Every reason has a source.', subtitle:'Explainable risk intelligence that compliance teams can defend to regulators, auditors, and courts. No black boxes. No unexplained numbers.'}}
+    seo={{title:'Explainable Risk Scoring', desc:'Auditable, transparent risk scoring with full attribution provenance and Verifiable Logic.'}}
+    hero={{eyebrow:'Explainable Risk Scoring', title:'Every score has a reason. Every reason has a source.', subtitle:'Transparent risk intelligence that compliance teams can defend to regulators, auditors, and courts via Courtroom-Ready Attribution. No black boxes. No unexplained numbers.'}}
     sections={[
       {title:'How it works', content: <WorkflowSteps steps={[
         {step:'1', title:'Multi-signal analysis', desc:'Sanctions lists, clustering data, behavioral patterns, counterparty exposure, and entity attribution are all evaluated.'},
@@ -314,7 +314,7 @@ const WhiteBoxRiskScoring = () => (
         {step:'3', title:'Source attribution', desc:'Every factor links back to its data source — OFAC SDN list, cluster co-spend heuristic, partner intelligence feed, or analyst review.'},
         {step:'4', title:'Audit trail', desc:'The full scoring rationale is preserved as an immutable record. Replay any score at any point in time.'},
       ]}/> },
-      {title:'Why it matters', content: <p className="muted" style={{fontSize:16, lineHeight:1.65, maxWidth:720}}>Regulators increasingly demand that compliance teams explain their risk decisions — not just show a number. White-box scoring is not a feature; it's a regulatory requirement that most tools fail to meet. Bitint builds explainability into every score by default.</p>},
+      {title:'Why it matters', content: <p className="muted" style={{fontSize:16, lineHeight:1.65, maxWidth:720}}>Regulators increasingly demand that compliance teams explain their risk decisions — not just show a number. Explainable Risk Scoring is not a feature; it's a regulatory requirement that most tools fail to meet. Bitint builds Evidence-Based Intelligence and transparent scoring into every result by default.</p>},
     ]}
     relatedSolutions={[{label:'AML / KYT Compliance', href:'/solutions/aml-kyt-compliance'},{label:'Case Reporting', href:'/solutions/case-reporting-audit-trails'}]}
     relatedIndustries={[{label:'VASPs & Exchanges', href:'/industries/vasps-exchanges'},{label:'Stablecoin Issuers', href:'/industries/stablecoin-issuers'}]}
@@ -348,7 +348,7 @@ export const Platform = () => (
     <Route path="investigation-graph" element={<InvestigationGraph />} />
     <Route path="cross-chain-tracing" element={<CrossChainTracing />} />
     <Route path="entity-intelligence" element={<EntityIntelligence />} />
-    <Route path="white-box-risk-scoring" element={<WhiteBoxRiskScoring />} />
+    <Route path="explainable-risk-scoring" element={<ExplainableRiskScoring />} />
     <Route path="api" element={<APIPage />} />
   </Routes>
 );
