@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BitintLogo, Icon } from '../ui/Icons';
+import Lottie from 'lottie-react';
+import animationData from '../../public/Bitint_animation.json';
 
 export const Footer: React.FC = () => {
   const cols = [
@@ -61,16 +63,15 @@ export const Footer: React.FC = () => {
       <div className="container-wide">
         <div style={{display:'grid', gridTemplateColumns:'1.4fr repeat(5, 1fr)', gap:32}} className="max-lg:grid-cols-2 max-sm:grid-cols-1">
           <div>
-            <Link to="/" style={{display: 'inline-block', marginBottom: 20}}>
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{display: 'block', height: 48, width: 'auto', objectFit: 'contain'}}
-              >
-                <source src="/Bitint_animation.mp4" type="video/mp4" />
-              </video>
+            <Link to="/" style={{display: 'inline-block', marginBottom: 0}}>
+              <div style={{ width: 400, display: 'flex', alignItems: 'center', marginLeft: -102, marginTop: -60, marginBottom: -75 }}>
+                <Lottie 
+                  animationData={animationData} 
+                  loop={true} 
+                  autoplay={true} 
+                  style={{ width: '100%', height: 'auto' }} 
+                />
+              </div>
             </Link>
             <p style={{color:'var(--text-muted)', fontSize:14, marginTop:10, maxWidth:280, lineHeight:1.55}}>
               Blockchain intelligence for investigators, compliance teams, and the agencies that back them.
