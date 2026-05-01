@@ -18,6 +18,7 @@ import { Helmet } from 'react-helmet-async';
 import { NewsletterPopup } from './components/ui/NewsletterPopup';
 import { CookieConsent } from './components/ui/CookieConsent';
 import { BackToTop } from './components/ui/BackToTop';
+import { WhatsAppWidget } from './components/ui/WhatsAppWidget';
 
 // ScrollToTop Component
 const ScrollToTop = () => {
@@ -39,7 +40,8 @@ const AppLayout = () => {
       {!isAuthPage && <NewsletterPopup />}
       {!isAuthPage && <CookieConsent />}
       {!isAuthPage && <BackToTop />}
-      <main className="flex-grow flex flex-col">
+      {!isAuthPage && <WhatsAppWidget />}
+      <main className="flex-grow flex flex-col" style={{ paddingTop: !isAuthPage ? 'var(--nav-h)' : 0 }}>
         <Routes>
           <Route path="/" element={<Home />} />
 

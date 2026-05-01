@@ -11,12 +11,15 @@ export function BitintLogo({ size = 28, mono = false, showWordmark = true }: { s
   const iconSrc = theme === 'dark' ? '/2.svg' : '/1.svg';
   const fullSrc = theme === 'dark' ? '/4.svg' : '/3.svg';
 
+  // Adjust dark mode wordmark to visually match light mode size (increased further)
+  const finalSize = theme === 'dark' && showWordmark ? size * 1.25 : size;
+
   return (
     <div style={{display:'inline-flex', alignItems:'center'}}>
       <img
         src={showWordmark ? fullSrc : iconSrc}
         alt="Bitint"
-        style={{ display: 'block', height: size, width: 'auto' }}
+        style={{ display: 'block', height: finalSize, width: 'auto' }}
       />
     </div>
   );

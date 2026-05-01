@@ -208,7 +208,7 @@ html[data-theme="dark"] .eyebrow { color: var(--violet-200); }
 
 /* Nav */
 .nav {
-  position: sticky; top: 0; z-index: 50;
+  position: fixed; top: 0; z-index: 50; width: 100%;
   height: var(--nav-h);
   background: color-mix(in oklab, var(--bg) 80%, transparent);
   backdrop-filter: saturate(140%) blur(16px);

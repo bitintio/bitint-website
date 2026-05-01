@@ -2,9 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BitintLogo, Icon } from '../ui/Icons';
 import Lottie from 'lottie-react';
-import animationData from '../../public/Bitint_animation.json';
+import animDark from '../../public/V1.json';
+import animLight from '../../public/V2.json';
+import { useTheme } from '../ThemeContext';
 
 export const Footer: React.FC = () => {
+  const { theme } = useTheme();
   const cols = [
     { title:'Platform', items:[
       ['Overview','/platform'],['Wallet Screening','/platform/wallet-screening'],
@@ -63,9 +66,9 @@ export const Footer: React.FC = () => {
         <div style={{display:'grid', gridTemplateColumns:'1.4fr repeat(5, 1fr)', gap:32}} className="max-lg:grid-cols-2 max-sm:grid-cols-1">
           <div>
             <Link to="/" style={{display: 'inline-block', marginBottom: 0}}>
-              <div style={{ width: 400, display: 'flex', alignItems: 'center', marginLeft: -102, marginTop: -60, marginBottom: -75 }}>
+              <div style={{ width: 240, maxWidth: '100%', display: 'flex', alignItems: 'center', marginBottom: 12, marginLeft: -8 }}>
                 <Lottie 
-                  animationData={animationData} 
+                  animationData={theme === 'dark' ? animDark : animLight} 
                   loop={true} 
                   autoplay={true} 
                   style={{ width: '100%', height: 'auto' }} 
@@ -110,7 +113,6 @@ export const Footer: React.FC = () => {
           </div>
           <div style={{display:'flex', gap:20}}>
             <span>SOC 2 In Progress</span>
-            <span>GDPR</span>
           </div>
         </div>
       </div>
