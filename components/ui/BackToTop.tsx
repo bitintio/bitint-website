@@ -24,7 +24,7 @@ export const BackToTop = () => {
       aria-label="Back to top"
       style={{
         position: 'fixed',
-        bottom: 90, // Positioned above Tidio chat widget (which is usually at 20px)
+        bottom: 110, // Positioned safely above Tidio chat widget
         right: 20,
         zIndex: 9998,
         width: 44,

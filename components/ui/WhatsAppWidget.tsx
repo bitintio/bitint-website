@@ -10,7 +10,7 @@ export const WhatsAppWidget: React.FC = () => {
       style={{
         position: 'fixed',
         bottom: 24,
-        right: 24,
+        left: 24,
         width: 60,
         height: 60,
         background: '#25D366',
